@@ -12,10 +12,31 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.userLogin = exports.getMusic = void 0;
+exports.postSignIn = exports.getLogout = exports.getLogin = exports.getMusic = void 0;
 const db_1 = __importDefault(require("../db"));
 const handle_errors_1 = __importDefault(require("../function/handle_errors"));
 const create_token_1 = __importDefault(require("../function/create_token"));
+// CREATE
+const postSignIn = (req, res) => {
+    const data = () => __awaiter(void 0, void 0, void 0, function* () {
+        try {
+            const { username, email, password } = req.body;
+            const user = yield db_1.default.query(`
+                    INSERT INTO account (username, email, password) 
+                    VALUES ($1, $2, sha256($3))
+                    RETURNING *;
+                `, [username, email, password]);
+            const uuid = user.rows[0].uuid;
+            res.status(201).json({ user: uuid });
+        }
+        catch (err) {
+            res.end(err.message);
+        }
+    });
+    data();
+};
+exports.postSignIn = postSignIn;
+// READ
 const getMusic = (req, res) => {
     const get = () => __awaiter(void 0, void 0, void 0, function* () {
         try {
@@ -30,7 +51,7 @@ const getMusic = (req, res) => {
     get();
 };
 exports.getMusic = getMusic;
-const userLogin = (req, res) => {
+const getLogin = (req, res) => {
     const login = () => __awaiter(void 0, void 0, void 0, function* () {
         try {
             const { email, password } = req.body;
@@ -60,4 +81,9 @@ const userLogin = (req, res) => {
     });
     login();
 };
-exports.userLogin = userLogin;
+exports.getLogin = getLogin;
+const getLogout = (req, res) => {
+    res.cookie('jwt', '', { maxAge: 1 });
+    res.end('logged out');
+};
+exports.getLogout = getLogout;

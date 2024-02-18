@@ -1,11 +1,34 @@
 import { RequestHandler, Request,Response } from "express";
-import { Music } from "../interface/music_interface";
 import pool from "../db";
 import { QueryResult } from "pg";
 import User from "../interface/user_interface";
+import { Music } from "../interface/music_interface";
 import handleErrors from "../function/handle_errors";
 import createToken from "../function/create_token";
 
+// CREATE
+const postSignIn: RequestHandler = (req: Request<{}, {}, User>, res) => {
+    const data = async () => {
+        try {
+            const {username, email, password} = req.body;
+            const user: QueryResult<{uuid: string}> = await pool.query(
+                `
+                    INSERT INTO account (username, email, password) 
+                    VALUES ($1, $2, sha256($3))
+                    RETURNING *;
+                `,
+                [ username, email, password ]
+            )
+            const uuid = user.rows[0].uuid;
+            res.status(201).json({user: uuid});
+        } catch (err: any) {
+            res.end(err.message)
+        }
+    }
+    data();
+}
+
+// READ
 const getMusic: RequestHandler = (req, res: Response<Music>) => {
     const get = async () => {
         try {
@@ -20,7 +43,7 @@ const getMusic: RequestHandler = (req, res: Response<Music>) => {
     get();
 }
 
-const userLogin: RequestHandler = (req: Request<{}, {}, User>, res) => {
+const getLogin: RequestHandler = (req: Request<{}, {}, User>, res) => {
     const login = async () => {
         try {
             const { email, password } = req.body;
@@ -52,4 +75,9 @@ const userLogin: RequestHandler = (req: Request<{}, {}, User>, res) => {
     login();
 }
 
-export { getMusic, userLogin };
+const getLogout: RequestHandler = (req, res)=> {
+    res.cookie('jwt', '', {maxAge: 1});
+    res.end('logged out');
+};
+
+export { getMusic, getLogin, getLogout, postSignIn };

@@ -6,6 +6,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const defaultController_1 = require("../controller/defaultController");
 const default_route = express_1.default.Router();
+// CREATE
+default_route.post('/sign-in', defaultController_1.postSignIn);
+// READ
 default_route.get('/', defaultController_1.getMusic);
-default_route.get('/login', defaultController_1.userLogin);
+default_route.get('/login', defaultController_1.getLogin);
+default_route.get('/logout', defaultController_1.getLogout);
 exports.default = default_route;
