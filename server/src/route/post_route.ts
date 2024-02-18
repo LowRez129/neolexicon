@@ -1,6 +1,6 @@
 import express, {Request} from 'express';
 import pool from '../db';
-import { Music } from './interface/music_interface';
+import { Music } from '../interface/music_interface';
 
 const post_route = express.Router();
 

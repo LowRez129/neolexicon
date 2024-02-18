@@ -1,15 +1,26 @@
-import express, { Request } from 'express';
-import pool from '../db';
-import User from './interface/user_interface';
-import { QueryResult } from 'pg';
-import jwt from 'jsonwebtoken';
-import handleErrors from '../controller/handle_errors';
-import dotenv from 'dotenv';
+import { RequestHandler, Request,Response } from "express";
+import { Music } from "../interface/music_interface";
+import pool from "../db";
+import { QueryResult } from "pg";
+import User from "../interface/user_interface";
+import handleErrors from "../function/handle_errors";
+import createToken from "../function/create_token";
 
-dotenv.config()
+const getMusic: RequestHandler = (req, res: Response<Music>) => {
+    const get = async () => {
+        try {
+            const data = await pool.query(`SELECT * FROM music;`);
+            res.end(JSON.stringify(data.rows));
 
-const login_route = express.Router();
-login_route.get('/', (req: Request<{}, {}, User>, res) => {
+        } catch (err: any) {
+            console.log(err.message);
+            res.end();
+        }
+    }
+    get();
+}
+
+const userLogin: RequestHandler = (req: Request<{}, {}, User>, res) => {
     const login = async () => {
         try {
             const { email, password } = req.body;
@@ -26,23 +37,10 @@ login_route.get('/', (req: Request<{}, {}, User>, res) => {
             
             if (!user_object) {throw Error('wrong email')};
             if (user_object.status != true) { throw Error('wrong password') };
-
-            //res.setHeader('Set-Header', `is_logged_in=${status}`);const maxAge: number = 3 * 24 * 60 * 60;
-            const maxAge: number = 3 * 24 * 60 * 60;
-            const createToken = (uuid: string) => {
-
-                let private_key = process.env.PRIVATEKEY;
-                if (typeof(private_key) !== 'string') { 
-                    console.log('missing privatekey');
-                    throw Error('missing privatekey');
-                };
-
-                return jwt.sign({uuid}, private_key, {
-                    expiresIn:  maxAge,
-                });
-            };
-            const token = createToken(user_object.uuid);
             
+            const token = createToken(user_object.uuid);
+            const maxAge: number = 3 * 24 * 60 * 60;
+
             res.cookie('jwt', token, {httpOnly: true, maxAge: (maxAge * 1000) });
             res.status(200).json(user_object);
         } catch (err: any) {
@@ -51,8 +49,7 @@ login_route.get('/', (req: Request<{}, {}, User>, res) => {
             res.status(400).json(errors);
         }
     }
-
     login();
-});
+}
 
-export default login_route;
+export { getMusic, userLogin };

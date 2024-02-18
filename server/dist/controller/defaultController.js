@@ -12,14 +12,25 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const express_1 = __importDefault(require("express"));
+exports.userLogin = exports.getMusic = void 0;
 const db_1 = __importDefault(require("../db"));
-const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const handle_errors_1 = __importDefault(require("../function/handle_errors"));
-const dotenv_1 = __importDefault(require("dotenv"));
-dotenv_1.default.config();
-const login_route = express_1.default.Router();
-login_route.get('/', (req, res) => {
+const create_token_1 = __importDefault(require("../function/create_token"));
+const getMusic = (req, res) => {
+    const get = () => __awaiter(void 0, void 0, void 0, function* () {
+        try {
+            const data = yield db_1.default.query(`SELECT * FROM music;`);
+            res.end(JSON.stringify(data.rows));
+        }
+        catch (err) {
+            console.log(err.message);
+            res.end();
+        }
+    });
+    get();
+};
+exports.getMusic = getMusic;
+const userLogin = (req, res) => {
     const login = () => __awaiter(void 0, void 0, void 0, function* () {
         try {
             const { email, password } = req.body;
@@ -36,20 +47,8 @@ login_route.get('/', (req, res) => {
                 throw Error('wrong password');
             }
             ;
-            //res.setHeader('Set-Header', `is_logged_in=${status}`);const maxAge: number = 3 * 24 * 60 * 60;
+            const token = (0, create_token_1.default)(user_object.uuid);
             const maxAge = 3 * 24 * 60 * 60;
-            const createToken = (uuid) => {
-                let private_key = process.env.PRIVATEKEY;
-                if (typeof (private_key) !== 'string') {
-                    console.log('missing privatekey');
-                    throw Error('missing privatekey');
-                }
-                ;
-                return jsonwebtoken_1.default.sign({ uuid }, private_key, {
-                    expiresIn: maxAge,
-                });
-            };
-            const token = createToken(user_object.uuid);
             res.cookie('jwt', token, { httpOnly: true, maxAge: (maxAge * 1000) });
             res.status(200).json(user_object);
         }
@@ -60,5 +59,5 @@ login_route.get('/', (req, res) => {
         }
     });
     login();
-});
-exports.default = login_route;
+};
+exports.userLogin = userLogin;

@@ -1,6 +1,6 @@
 import express, { Request, Response } from 'express';
 import pool from '../db';
-import User from './interface/user_interface';
+import User from '../interface/user_interface';
 import { QueryResult } from 'pg';
 
 const sign_in_route = express.Router();

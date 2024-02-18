@@ -2,9 +2,8 @@ import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import put_router from './route/put_route';
-import login_route from './route/login_route';
 import sign_in_route from './route/sign_in_route';
-import get_route from './route/get_route';
+import default_route from './route/default_route';
 import post_route from './route/post_route';
 import user_route from './route/user_route';
 import cookieParser from 'cookie-parser';
@@ -24,8 +23,7 @@ app.use('/sign-in', sign_in_route);
 app.use('post', post_route)
 
 // READ
-app.use('/', get_route);
-app.use('/login', login_route);
+app.use('/', default_route);
 app.use('/logout', logout_route);
 //app.use('*', checkUser);
 app.use('/user', requireAuth, user_route);
