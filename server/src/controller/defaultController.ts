@@ -29,11 +29,11 @@ const postSignIn: RequestHandler = (req: Request<{}, {}, User>, res) => {
 }
 
 // READ
-const getMusic: RequestHandler = (req, res: Response<Music>) => {
+const getMusic: RequestHandler = (req, res) => {
     const get = async () => {
         try {
-            const data = await pool.query(`SELECT * FROM music;`);
-            res.end(JSON.stringify(data.rows));
+            const data: QueryResult<Music> = await pool.query(`SELECT *,to_char(date, 'YYYY-MM-D') AS date FROM music;`);
+            res.status(200).send(data.rows);
 
         } catch (err: any) {
             console.log(err.message);
