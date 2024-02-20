@@ -1,7 +1,9 @@
 import './Catalogue.css';
 import { useState, useEffect } from 'react';
+import Music from './Music';
 
-interface Music {
+interface Music_Catalouge {
+    id: number,
     name: string,
     album: string,
     artist: string,
@@ -11,9 +13,9 @@ interface Music {
     genre: string,
 }
 
-
 export default function Catalogue () {
-    const [catalogues, setCatalogues] = useState<Music[]>([{}]) 
+    const [catalogues, setCatalogues] = useState<(Music_Catalouge|object)[]>([{}]);
+
     useEffect(() => {
         const data = async () => {
             try {
@@ -27,16 +29,10 @@ export default function Catalogue () {
 
         data();
     }, [])
-    const index = catalogues[0];
 
     return (
         <section className="catalogue">
-            <div style={{display: "flex", flexDirection: "column"}} >
-                <img style={{height: "200px", width: "200px"}} src={index.album_cover_url} />
-                <div>{index.artist} | {index.album} : {index.name}</div>
-                <div>{index.genre} | {index.date}</div>
-                <a href={index.song_url} target="_blank" rel="noopener noreferrer" >{index.song_url}</a>
-            </div>
+            {catalogues.map((music, index) => <Music music={music} key={index}/>)}
         </section>
     )
 }
