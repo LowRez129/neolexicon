@@ -1,6 +1,10 @@
 .music {
     display: flex;
-    flex-direction: column; 
+}
+
+.music > .description {
+    display: flex;
+    flex-direction: column;
 }
 
 .music > img {

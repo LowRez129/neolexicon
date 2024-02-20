@@ -7,7 +7,7 @@ function App() {
   return (
     <main>
       <section style={{width: "20%"}}>dawd</section>
-      {Catalogue()}
+      <Catalogue/>
     </main>
   )
 }

@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import Music from './Music';
 
 interface Music_Catalouge {
-    id: number,
+    uuid: string,
     name: string,
     album: string,
     artist: string,
@@ -14,25 +14,36 @@ interface Music_Catalouge {
 }
 
 export default function Catalogue () {
-    const [catalogues, setCatalogues] = useState<(Music_Catalouge|object)[]>([{}]);
+    const [catalogues, setCatalogues] = useState<(Music_Catalouge)[]>([]);
+    const [error, setError] = useState<Error|null>(null);
+    const [pending, setPending] = useState<boolean>(true);
 
     useEffect(() => {
         const data = async () => {
             try {
                 const promise = await fetch('http://localhost:5000');
                 const json = await promise.json();
+                setPending(false);
                 setCatalogues(json);
             } catch (err: any) {
-                setCatalogues(err.message);
+                if (err instanceof Error) {
+                    setError(err);
+                }
             }
         }
 
         data();
     }, [])
+     
+    const music_map = () => {
+        if (error) {return <div>{error.message}</div>}
+        if (pending == true) {return <div>Pending...</div>}
+        return catalogues.map((music) => <Music music={music} key={music.uuid} />);
+    }
 
     return (
         <section className="catalogue">
-            {catalogues.map((music, index) => <Music music={music} key={index}/>)}
+            {music_map()}
         </section>
     )
 }
