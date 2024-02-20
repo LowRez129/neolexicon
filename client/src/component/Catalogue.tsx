@@ -1,20 +1,10 @@
 import './Catalogue.css';
 import { useState, useEffect } from 'react';
 import Music from './Music';
-
-interface Music_Catalouge {
-    uuid: string,
-    name: string,
-    album: string,
-    artist: string,
-    album_cover_url: string,
-    song_url: string,
-    date: string,
-    genre: string,
-}
+import Music_Interface from '../interface/Music_Interface';
 
 export default function Catalogue () {
-    const [catalogues, setCatalogues] = useState<(Music_Catalouge)[]>([]);
+    const [catalogues, setCatalogues] = useState<(Music_Interface)[]>([]);
     const [error, setError] = useState<Error|null>(null);
     const [pending, setPending] = useState<boolean>(true);
 
@@ -38,7 +28,12 @@ export default function Catalogue () {
     const music_map = () => {
         if (error) {return <div>{error.message}</div>}
         if (pending == true) {return <div>Pending...</div>}
-        return catalogues.map((music) => <Music music={music} key={music.uuid} />);
+        return catalogues.map(({ uuid, artist, album, name, date, genre, album_cover_url, song_url}) => {
+            return <Music 
+                key={uuid} uuid={uuid} artist={artist} album={album} name={name} date={date} 
+                genre={genre} album_cover_url={album_cover_url} song_url={song_url}
+            />
+        });
     }
 
     return (
