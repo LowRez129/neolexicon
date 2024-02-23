@@ -1,4 +1,5 @@
 .catalogue {
+    display: flex;
     width: 80%;
     background-color: wheat;
 }

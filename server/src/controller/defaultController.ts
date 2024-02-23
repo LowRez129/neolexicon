@@ -28,22 +28,7 @@ const postSignIn: RequestHandler = (req: Request<{}, {}, User>, res) => {
     data();
 }
 
-// READ
-const getMusic: RequestHandler = (req, res) => {
-    const get = async () => {
-        try {
-            const data: QueryResult<Music> = await pool.query(`SELECT *,to_char(date, 'YYYY-MM-D') AS date FROM music;`);
-            res.status(200).send(data.rows);
-
-        } catch (err: any) {
-            console.log(err.message);
-            res.end();
-        }
-    }
-    get();
-}
-
-const getLogin: RequestHandler = (req: Request<{}, {}, User>, res) => {
+const postLogin: RequestHandler = (req, res) => {
     const login = async () => {
         try {
             const { email, password } = req.body;
@@ -68,11 +53,25 @@ const getLogin: RequestHandler = (req: Request<{}, {}, User>, res) => {
             res.status(200).json(user_object);
         } catch (err: any) {
             const errors = handleErrors(err);
-            console.log(errors.email, errors.password);
             res.status(400).json(errors);
         }
     }
     login();
+}
+
+// READ
+const getMusic: RequestHandler = (req, res) => {
+    const get = async () => {
+        try {
+            const data: QueryResult<Music> = await pool.query(`SELECT *,to_char(date, 'YYYY-MM-D') AS date FROM music;`);
+            res.status(200).send(data.rows);
+
+        } catch (err: any) {
+            console.log(err.message);
+            res.end();
+        }
+    }
+    get();
 }
 
 const getLogout: RequestHandler = (req, res)=> {
@@ -80,4 +79,4 @@ const getLogout: RequestHandler = (req, res)=> {
     res.end('logged out');
 };
 
-export { getMusic, getLogin, getLogout, postSignIn };
+export { postSignIn, postLogin, getMusic, getLogout };

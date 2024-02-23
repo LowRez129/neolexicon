@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 function handleErrors(err) {
     let errors = { email: '', password: '' };
     if (err.message === 'wrong email') {
-        errors.email = 'Email not registered.';
+        errors.email = 'Email does not exist.';
     }
     ;
     if (err.message === 'wrong password') {

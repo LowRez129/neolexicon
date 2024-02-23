@@ -1,0 +1,9 @@
+.sign-in {
+    background-color: grey;
+    height: 100%;
+}
+
+.sign-in > form {
+    display: flex;
+    flex-direction: column;
+}

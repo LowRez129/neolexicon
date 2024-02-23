@@ -16,9 +16,7 @@ export default function Catalogue () {
                 setPending(false);
                 setCatalogues(json);
             } catch (err: any) {
-                if (err instanceof Error) {
-                    setError(err);
-                }
+                setError(err);
             }
         }
 

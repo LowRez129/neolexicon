@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.postSignIn = exports.getLogout = exports.getLogin = exports.getMusic = void 0;
+exports.getLogout = exports.getMusic = exports.postLogin = exports.postSignIn = void 0;
 const db_1 = __importDefault(require("../db"));
 const handle_errors_1 = __importDefault(require("../function/handle_errors"));
 const create_token_1 = __importDefault(require("../function/create_token"));
@@ -36,22 +36,7 @@ const postSignIn = (req, res) => {
     data();
 };
 exports.postSignIn = postSignIn;
-// READ
-const getMusic = (req, res) => {
-    const get = () => __awaiter(void 0, void 0, void 0, function* () {
-        try {
-            const data = yield db_1.default.query(`SELECT *,to_char(date, 'YYYY-MM-D') AS date FROM music;`);
-            res.status(200).send(data.rows);
-        }
-        catch (err) {
-            console.log(err.message);
-            res.end();
-        }
-    });
-    get();
-};
-exports.getMusic = getMusic;
-const getLogin = (req, res) => {
+const postLogin = (req, res) => {
     const login = () => __awaiter(void 0, void 0, void 0, function* () {
         try {
             const { email, password } = req.body;
@@ -75,13 +60,27 @@ const getLogin = (req, res) => {
         }
         catch (err) {
             const errors = (0, handle_errors_1.default)(err);
-            console.log(errors.email, errors.password);
             res.status(400).json(errors);
         }
     });
     login();
 };
-exports.getLogin = getLogin;
+exports.postLogin = postLogin;
+// READ
+const getMusic = (req, res) => {
+    const get = () => __awaiter(void 0, void 0, void 0, function* () {
+        try {
+            const data = yield db_1.default.query(`SELECT *,to_char(date, 'YYYY-MM-D') AS date FROM music;`);
+            res.status(200).send(data.rows);
+        }
+        catch (err) {
+            console.log(err.message);
+            res.end();
+        }
+    });
+    get();
+};
+exports.getMusic = getMusic;
 const getLogout = (req, res) => {
     res.cookie('jwt', '', { maxAge: 1 });
     res.end('logged out');
