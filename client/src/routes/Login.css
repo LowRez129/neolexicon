@@ -1,4 +1,4 @@
-.sign-in {
+.login {
     background-color: wheat;
     display: flex;
     flex-direction: column;
@@ -6,7 +6,7 @@
     align-items: center;
 }
 
-.sign-in > form {
+.login > .login-form {
     display: flex;
     flex-direction: column;
     justify-content: center;

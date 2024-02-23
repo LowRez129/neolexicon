@@ -1,4 +1,5 @@
 import { SyntheticEvent, useState } from "react";
+import './Login.css';
 
 export default function Login () {
     type LoginInput = { email: string, password: string };
@@ -30,8 +31,8 @@ export default function Login () {
     
     return (
         <main className="login">
-            <a href="/">Home</a>
-            <form onSubmit={login}>
+            
+            <form onSubmit={login} className="login-form">
                 <label>Email:</label>
                 <input placeholder="Email" type='email' required value={email} onChange={e => setEmail(e.target.value)}/>
                 {email_error}
@@ -39,6 +40,7 @@ export default function Login () {
                 <input placeholder="Password" type='password' required value={password} onChange={e => setPassword(e.target.value)}/>
                 {password_error}
                 <button>Submit</button>
+                <input type="button" onClick={() => window.location.href = "/"} value="Home" />
             </form>
         </main>
     )

@@ -46,6 +46,7 @@ export default function SignIn () {
                 <label>Confirm Password:</label>
                 <input placeholder="Confirm Password" type='password' required value={confirm_password} onChange={e => setConfirmPassword(e.target.value)}/>
                 <button>Submit</button>
+                <input type="button" onClick={() => window.location.href = "/"} value="Home" />
             </form>
         </main>
     )
