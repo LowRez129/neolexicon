@@ -1,6 +1,7 @@
 import { SyntheticEvent } from "react"
 
 export default function User () {
+    console.log(document.cookie);
     const user = async () => {
         try {
             //e.preventDefault()
@@ -11,9 +12,8 @@ export default function User () {
         }
         
     }
-
     user();
-
+ 
     return (
         <a href="/">home</a>
     )

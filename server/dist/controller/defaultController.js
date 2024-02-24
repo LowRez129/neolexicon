@@ -55,8 +55,8 @@ const postLogin = (req, res) => {
             ;
             const token = (0, create_token_1.default)(user_object.uuid);
             const maxAge = 3 * 24 * 60 * 60;
-            res.cookie('jwt', token, { httpOnly: true, maxAge: (maxAge * 1000) });
-            res.status(200).json(user_object);
+            res.cookie('jwt', token, { httpOnly: true, maxAge: (maxAge * 1000), sameSite: "lax" });
+            res.json({ token });
         }
         catch (err) {
             const errors = (0, handle_errors_1.default)(err);

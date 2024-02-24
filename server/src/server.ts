@@ -6,10 +6,14 @@ import default_route from './route/default_route';
 import user_route from './route/user_route';
 
 dotenv.config()
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT;
+const CLIENT_URL = process.env.CLIENT_URL;
 
 const app = express();
-app.use(cors());
+app.use(cors({
+    origin: CLIENT_URL,
+    credentials: true
+}));
 app.use(express.json());
 app.use(cookieParser());
 

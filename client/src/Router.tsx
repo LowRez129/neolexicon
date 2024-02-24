@@ -3,6 +3,7 @@ import App from './routes/App';
 import ErrorPage from './routes/ErrorPage';
 import SignIn from './routes/SignIn';
 import Login from './routes/Login';
+import User from './routes/User';
 
 export default function Router () {
     const router = createBrowserRouter([
@@ -20,6 +21,11 @@ export default function Router () {
           path: "/login",
           element: <Login/>,
           errorElement: <ErrorPage/>
+        },
+        {
+          path: "/user",
+          element: <User/>,
+          errorElement: <ErrorPage />
         }
       ]);
       

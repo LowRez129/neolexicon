@@ -10,9 +10,13 @@ const cookie_parser_1 = __importDefault(require("cookie-parser"));
 const default_route_1 = __importDefault(require("./route/default_route"));
 const user_route_1 = __importDefault(require("./route/user_route"));
 dotenv_1.default.config();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT;
+const CLIENT_URL = process.env.CLIENT_URL;
 const app = (0, express_1.default)();
-app.use((0, cors_1.default)());
+app.use((0, cors_1.default)({
+    origin: CLIENT_URL,
+    credentials: true
+}));
 app.use(express_1.default.json());
 app.use((0, cookie_parser_1.default)());
 app.use('/', default_route_1.default);

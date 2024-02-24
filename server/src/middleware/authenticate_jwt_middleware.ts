@@ -6,6 +6,7 @@ dotenv.config();
 
 const requireAuth = (req: Request, res: Response, next: NextFunction) => {
     const token = req.cookies.jwt;
+    console.log(token)
 
     if (token) {
         let private_key = process.env.PRIVATEKEY;
@@ -26,8 +27,7 @@ const requireAuth = (req: Request, res: Response, next: NextFunction) => {
 
         jwt.verify(token, private_key, verify_callback)
     } else {
-        console.log('missing jwt');
-        res.end();
+        res.status(400).json('missing jwt');
     }
 }
 
@@ -63,8 +63,7 @@ const checkUser = (req: Request, res: Response, next: NextFunction) => {
 
         jwt.verify(token, private_key, verify_callback)
     } else {
-        console.log('missing jwt');
-        res.end('missing jwt');
+        res.status(400).end('missing jwt');
     }
 }
 

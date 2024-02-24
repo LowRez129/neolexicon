@@ -16,10 +16,12 @@ export default function Login () {
             const data = await fetch ("http://localhost:5000/login", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(body)
+                body: JSON.stringify(body),
+                credentials: "include"
             })
-            const parsed = data.json()
+
             if(data.ok == true) { return } 
+            const parsed = data.json()
             parsed.then((value) => { return setError(value) });
         } catch (err: any) {
             console.log(err.message);

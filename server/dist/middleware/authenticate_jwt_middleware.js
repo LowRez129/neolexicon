@@ -19,6 +19,7 @@ const db_1 = __importDefault(require("../db"));
 dotenv_1.default.config();
 const requireAuth = (req, res, next) => {
     const token = req.cookies.jwt;
+    console.log(token);
     if (token) {
         let private_key = process.env.PRIVATEKEY;
         if (typeof (private_key) !== 'string') {
@@ -39,8 +40,7 @@ const requireAuth = (req, res, next) => {
         jsonwebtoken_1.default.verify(token, private_key, verify_callback);
     }
     else {
-        console.log('missing jwt');
-        res.end();
+        res.status(400).json('missing jwt');
     }
 };
 exports.requireAuth = requireAuth;
@@ -73,8 +73,7 @@ const checkUser = (req, res, next) => {
         jsonwebtoken_1.default.verify(token, private_key, verify_callback);
     }
     else {
-        console.log('missing jwt');
-        res.end('missing jwt');
+        res.status(400).end('missing jwt');
     }
 };
 exports.checkUser = checkUser;
