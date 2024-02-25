@@ -49,7 +49,12 @@ const postLogin: RequestHandler = (req, res) => {
             const token = createToken(user_object.uuid);
             const maxAge: number = 3 * 24 * 60 * 60;
 
-            res.cookie('jwt', token, {httpOnly: true, maxAge: (maxAge * 1000), sameSite: "lax"});
+            res.cookie('jwt', token, {
+                httpOnly: true, 
+                maxAge: (maxAge * 1000), 
+                sameSite: "none", 
+                secure: true 
+            });
             res.json({token});
         } catch (err: any) {
             const errors = handleErrors(err);

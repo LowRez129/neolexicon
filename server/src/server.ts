@@ -10,13 +10,12 @@ const PORT = process.env.PORT;
 const CLIENT_URL = process.env.CLIENT_URL;
 
 const app = express();
-app.use(cors({
-    origin: CLIENT_URL,
-    credentials: true
-}));
 app.use(express.json());
 app.use(cookieParser());
-
+app.use(cors({
+    origin: CLIENT_URL,
+    credentials: true,
+}));
 app.use('/', default_route);
 app.use('/user', user_route);
 
