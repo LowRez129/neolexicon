@@ -12,8 +12,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.putMusic = exports.postMusic = void 0;
+exports.putMusic = exports.getUser = exports.postMusic = void 0;
 const db_1 = __importDefault(require("../db"));
+const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
+// CREATE
 const postMusic = (req, res) => {
     const post = () => __awaiter(void 0, void 0, void 0, function* () {
         try {
@@ -32,6 +34,32 @@ const postMusic = (req, res) => {
     post();
 };
 exports.postMusic = postMusic;
+// READ
+const getUser = (req, res) => {
+    const token = req.cookies.jwt;
+    const private_key = process.env.PRIVATEKEY || '';
+    const verify_callback = (err, decoded) => __awaiter(void 0, void 0, void 0, function* () {
+        if (err) {
+            console.log(err.message);
+            res.status(400).json(err.message);
+        }
+        const get = () => __awaiter(void 0, void 0, void 0, function* () {
+            try {
+                const user = yield db_1.default.query(`SELECT username, post_array FROM account WHERE uuid = $1`, [decoded.uuid]);
+                const user_properties = user.rows[0];
+                res.status(200).json(user_properties);
+            }
+            catch (err) {
+                console.log(err.message);
+                res.status(400).json(err.message);
+            }
+        });
+        get();
+    });
+    jsonwebtoken_1.default.verify(token, private_key, verify_callback);
+};
+exports.getUser = getUser;
+// UPDATE
 const putMusic = (req, res) => {
     const put = () => __awaiter(void 0, void 0, void 0, function* () {
         try {

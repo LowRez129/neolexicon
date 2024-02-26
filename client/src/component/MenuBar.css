@@ -3,3 +3,8 @@
     flex-direction: column;
     width: 20%;
 }
+
+.menu-bar > .button-container {
+    display: flex;
+    justify-content: space-evenly;
+}

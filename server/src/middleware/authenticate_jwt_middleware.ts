@@ -39,7 +39,6 @@ const checkUser = (req: Request, res: Response, next: NextFunction) => {
             )
             const user = data.rows[0];
             res.locals.user = user;
-            console.log(res.locals.user);
             next();
         }
     }
