@@ -18,8 +18,7 @@ export default function SignIn () {
                 body: JSON.stringify(body)
             })
 
-            console.log(response);
-            window.location.pathname = '/';
+            window.location.pathname = '/login';
         } catch (err: any) {
             console.log(err.message);
         }

@@ -6,6 +6,7 @@ interface Music {
     song_url: string,
     date: string,
     genre: string,
+    user_uuid: string
 }
 
 export {Music};
