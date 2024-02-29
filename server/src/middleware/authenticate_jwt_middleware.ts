@@ -1,20 +1,19 @@
 import jwt, { VerifyCallback } from 'jsonwebtoken';
-import { NextFunction, Request, Response } from 'express';
+import { NextFunction, Request, RequestHandler, Response } from 'express';
 import dotenv from 'dotenv';
 import pool from '../db';
 dotenv.config();
 const private_key = process.env.PRIVATEKEY || '';
 
-const requireAuth = (req: Request, res: Response, next: NextFunction) => {
+const requireAuth: RequestHandler = (req, res, next: NextFunction) => {
     const token = req.cookies.jwt;
 
-    if (!token) { return res.status(400).json('missing jwt'); }
-
+    if (!token) { return res.status(400).json('JWT is nonexistant.') }
     const verify_callback: VerifyCallback = (err, decoded) => {
         if (err) {
-            res.status(400).json('Cant');
+            res.status(400).json('JWT cannot be decoded.');
         } else {
-            next();
+            res.status(200).json(true);
         }
     }
     jwt.verify(token, private_key, verify_callback)

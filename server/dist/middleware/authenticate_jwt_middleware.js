@@ -21,14 +21,14 @@ const private_key = process.env.PRIVATEKEY || '';
 const requireAuth = (req, res, next) => {
     const token = req.cookies.jwt;
     if (!token) {
-        return res.status(400).json('missing jwt');
+        return res.status(400).json('JWT is nonexistant.');
     }
     const verify_callback = (err, decoded) => {
         if (err) {
-            res.status(400).json('Cant');
+            res.status(400).json('JWT cannot be decoded.');
         }
         else {
-            next();
+            res.status(200).json(true);
         }
     };
     jsonwebtoken_1.default.verify(token, private_key, verify_callback);

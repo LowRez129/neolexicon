@@ -11,7 +11,7 @@ export default function Catalogue () {
     useEffect(() => {
         const data = async () => {
             try {
-                const promise = await fetch('http://localhost:5000');
+                const promise = await fetch('http://localhost:5000', { credentials: 'include' });
                 const json = await promise.json();
                 setPending(false);
                 setCatalogues(json);
