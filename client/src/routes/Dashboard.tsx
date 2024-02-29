@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import './Dashboard.css';
 import PostMusic from "../component/PostWord";
+import Word from "../component/Word";
 
 export default function Dashboard () {
-        type Data = { word: string, description: string, username: string }
-        const DEFAULT = {word: '', description: '', username: ''}
-        const [user, setUser] = useState<Data>(DEFAULT);
+        type Data = { uuid: string, word: string, description: string }
+        const DEFAULT = [{uuid: '', word: '', description: ''}]
+        const [user, setUser] = useState<Data[]>(DEFAULT);
 
     useEffect(() => {
         const User = async () => {
@@ -15,24 +16,28 @@ export default function Dashboard () {
                 setUser(parsed);
             } catch (err: any) {
                 console.log(err.message);
-                //window.location.href = '/login';
+                window.location.href = '/login';
             }
         }
-    User();
-        console.log(user.username);
+        User();
     }, [])
-    
-    console.log(user.description)
+
+    const word_map = () => {
+        return user.map(({ uuid, word, description }) => {
+            return <Word word={word} description={description} key={uuid}/>
+        })
+    }
+    console.log(user);
  
     return (
         <main className="dashboard">
             <section className="menu-bar">
                 <a href="/">home</a>
-                <div>{user.username}</div>
+                <div>{}</div>
             </section>
             <section className="posts">
                 <PostMusic/>
-                <div>{user.word} - {user.description}</div>
+                {word_map()}
             </section>
         </main>
     )

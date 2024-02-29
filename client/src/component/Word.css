@@ -7,8 +7,8 @@
     flex-direction: column;
 }
 
-.music > img {
-    height: 200px;
-    width: 200px;
+.music > .word {
+    height: 50px;
+    width: minmax(100px, auto);
     background-color: grey;   
 }

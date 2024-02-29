@@ -11,12 +11,13 @@ export default function PostMusic () {
 
         try {
             const body: WordsInterface = { word, description };
-            await fetch('http://localhost:5000/user/post', {
+            const data = await fetch('http://localhost:5000/user/post', {
                 method: "POST",
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify(body),
                 credentials: "include"
             })
+            if (data.ok) { window.location.href = '/dashboard' }
         } catch (err: any) {
             console.log(err.message);
         }
@@ -26,8 +27,8 @@ export default function PostMusic () {
         <main className="post-music">
             <form onSubmit={post} className="post-form">
                 <div className='input-container'>
-                    <input type="text" placeholder='word' onChange={(e) => setWord(e.target.value.toLowerCase())}/>
-                    <input type="text" placeholder='description' onChange={(e) => setDescription(e.target.value)}/>
+                    <input required className='word' type="text" placeholder='word' onChange={(e) => setWord(e.target.value.toLowerCase())}/>
+                    <textarea required className='description' placeholder='description' onChange={(e) => setDescription(e.target.value) }/>
                 </div>
                 <button className='submit-button'>Post</button>
             </form>

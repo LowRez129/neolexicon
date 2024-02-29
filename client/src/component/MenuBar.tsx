@@ -20,29 +20,19 @@ export default function MenuBar () {
         check_jwt();
     })
 
-    const show = () => {
-        console.log(login);
-        if (login == false) {
-            return (
-                <>
-                    <input type="button" onClick={() => window.location.href = "/sign-in"} value="Sign In"/>
-                    <input type="button" onClick={() => window.location.href = "/login"} value="Login"/>
-                </> 
-            )
-        }
+    const show = (login == false) ? <>
+        <input type="button" onClick={() => window.location.href = "/sign-in"} value="Sign In"/>
+        <input type="button" onClick={() => window.location.href = "/login"} value="Login"/>
+    </> : <>
+        <input type="button" onClick={() => window.location.href = "/dashboard"} value="Dashboard"/>
+        <Logout/>
+    </>
 
-        return (
-            <>
-                <input type="button" onClick={() => window.location.href = "/dashboard"} value="Dashboard"/>
-                <Logout/>
-            </>
-        )
-    }
 
     return (
         <section className="menu-bar">
             <div className='button-container'>
-                {show()}
+                {show}
             </div>
             <form style={{display: "flex"}}>
                 <input style={{width: "100%"}} placeholder='Search'/>

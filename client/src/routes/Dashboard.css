@@ -11,6 +11,6 @@
 }
 
 .dashboard > .posts {
-    background-color: azure;
     display: grid;
+    grid-template-columns: repeat(2, auto);
 }

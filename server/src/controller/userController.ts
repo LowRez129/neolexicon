@@ -44,11 +44,11 @@ const getUser: RequestHandler = (req, res) => {
         const get = async () => {
             try {
                 const user = await pool.query(
-                    `SELECT *, a.username FROM words INNER JOIN account AS a ON user_uuid = a.uuid WHERE user_uuid = $1;`,
+                    `SELECT * FROM words WHERE user_uuid = $1;`,
                     [decoded.uuid]
                 )
                 
-                const user_properties = user.rows[0];
+                const user_properties = user.rows;
                 res.status(200).json(user_properties);
     
             } catch (err: any) {

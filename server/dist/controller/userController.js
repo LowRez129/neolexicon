@@ -52,8 +52,8 @@ const getUser = (req, res) => {
         }
         const get = () => __awaiter(void 0, void 0, void 0, function* () {
             try {
-                const user = yield db_1.default.query(`SELECT *, a.username FROM words INNER JOIN account AS a ON user_uuid = a.uuid WHERE user_uuid = $1;`, [decoded.uuid]);
-                const user_properties = user.rows[0];
+                const user = yield db_1.default.query(`SELECT * FROM words WHERE user_uuid = $1;`, [decoded.uuid]);
+                const user_properties = user.rows;
                 res.status(200).json(user_properties);
             }
             catch (err) {

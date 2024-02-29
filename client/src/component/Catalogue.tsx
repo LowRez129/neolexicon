@@ -1,7 +1,7 @@
 import WordsInterface from '../interface/words_interface';
 import './Catalogue.css';
 import { useState, useEffect } from 'react';
-import Words from './Words';
+import Word from './Word';
 
 export default function Catalogue () {
     const [catalogues, setCatalogues] = useState<(WordsInterface)[]>([]);
@@ -27,7 +27,7 @@ export default function Catalogue () {
         if (error) {return <div>{error.message}</div>}
         if (pending == true) {return <div>Pending...</div>}
         return catalogues.map(({ word, description, uuid }) => {
-            return <Words word={word} description={description} key={uuid}/>
+            return <Word word={word} description={description} key={uuid}/>
         });
     }
 

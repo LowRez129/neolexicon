@@ -1,11 +1,9 @@
-import './Words.css';
-import default_image from '../../img/image-outline.svg';
+import './Word.css';
 import { useState } from 'react';
 import words_proptypes from '../proptype/Words_PropType';
-import WordsInterface from '../interface/words_interface';
 
-
-function Words ({ word, description }: WordsInterface) {
+type WordProp = { word: string, description: string };
+function Word ({ word, description } : WordProp) {
     const [toggle, setToggle] = useState<boolean>(false);
     const toggleDescription = () => {
         setToggle(!toggle);
@@ -13,19 +11,18 @@ function Words ({ word, description }: WordsInterface) {
 
     const description_container = (toggle == true) ? (
         <div className='description'>
-                <div>{word}</div>
-                <div>{description}</div>
+            <div>{description}</div>
         </div>
     ) : <></>;
 
     return (
         <div className='music'>
-            <img src={default_image} onClick={toggleDescription}/>
+            <button className='word' onClick={toggleDescription}>{word}</button>
             {description_container}
         </div>
     )
 }
 
-Words.propTypes = words_proptypes;
+Word.propTypes = words_proptypes;
 
-export default Words;
+export default Word;
