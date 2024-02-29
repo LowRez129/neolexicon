@@ -20,7 +20,7 @@ export default function Login () {
                 credentials: "include"
             })
 
-            if(data.ok == true) { return } 
+            if(data.ok == true) { return window.location.href = '/dashboard'} 
             const parsed = data.json()
             parsed.then((value) => { return setError(value) });
         } catch (err: any) {

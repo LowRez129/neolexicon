@@ -1,0 +1,16 @@
+.dashboard {
+    display: grid;
+    background-color: aqua;
+    height: 100%;
+    grid-template-columns: repeat(2, auto);
+}
+
+.dashboard > .menu-bar {
+    background-color: aquamarine;
+    width: 100%;
+}
+
+.dashboard > .posts {
+    background-color: azure;
+    display: grid;
+}

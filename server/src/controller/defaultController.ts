@@ -2,9 +2,9 @@ import { RequestHandler, Request,Response } from "express";
 import pool from "../db";
 import { QueryResult } from "pg";
 import User from "../interface/user_interface";
-import { Music } from "../interface/music_interface";
 import handleErrors from "../function/handle_errors";
 import createToken from "../function/create_token";
+import Words from "../interface/word_interface";
 
 // CREATE
 const postSignIn: RequestHandler = (req: Request<{}, {}, User>, res) => {
@@ -68,7 +68,7 @@ const postLogin: RequestHandler = (req, res) => {
 const getMusic: RequestHandler = (req, res) => {
     const get = async () => {
         try {
-            const data: QueryResult<Music> = await pool.query(`SELECT *,to_char(date, 'YYYY-MM-D') AS date FROM music;`);
+            const data: QueryResult<Words> = await pool.query(`SELECT * FROM words;`);
             res.status(200).send(data.rows);
 
         } catch (err: any) {

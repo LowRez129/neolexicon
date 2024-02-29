@@ -75,7 +75,7 @@ exports.postLogin = postLogin;
 const getMusic = (req, res) => {
     const get = () => __awaiter(void 0, void 0, void 0, function* () {
         try {
-            const data = yield db_1.default.query(`SELECT *,to_char(date, 'YYYY-MM-D') AS date FROM music;`);
+            const data = yield db_1.default.query(`SELECT * FROM words;`);
             res.status(200).send(data.rows);
         }
         catch (err) {
