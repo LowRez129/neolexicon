@@ -1,6 +1,6 @@
 import { SyntheticEvent, useState } from 'react';
 import './PostWord.css';
-import WordsInterface from '../interface/words_interface';
+import WordsInterface from '../../interface/words_interface';
 
 export default function PostMusic () {
     const [word, setWord] = useState('');
@@ -17,7 +17,7 @@ export default function PostMusic () {
                 body: JSON.stringify(body),
                 credentials: "include"
             })
-            if (data.ok) { window.location.href = '/dashboard' }
+            if (data.ok) { window.location.reload() }
         } catch (err: any) {
             console.log(err.message);
         }

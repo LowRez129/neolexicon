@@ -11,4 +11,5 @@ user_route.get('/require-auth', authenticate_jwt_middleware_1.requireAuth);
 user_route.use('*', authenticate_jwt_middleware_1.checkUser);
 user_route.get('/', userController_1.getUser);
 user_route.post('/post', userController_1.postWord);
+user_route.delete('/delete', userController_1.deleteWord);
 exports.default = user_route;

@@ -1,6 +1,6 @@
 import './Word.css';
 import { useState } from 'react';
-import words_proptypes from '../proptype/Words_PropType';
+import words_proptypes from '../../proptype/Words_PropType';
 
 type WordProp = { word: string, description: string };
 function Word ({ word, description } : WordProp) {
@@ -16,7 +16,7 @@ function Word ({ word, description } : WordProp) {
     ) : <></>;
 
     return (
-        <div className='music'>
+        <div className='word-container'>
             <button className='word' onClick={toggleDescription}>{word}</button>
             {description_container}
         </div>

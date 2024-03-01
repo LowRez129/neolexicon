@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getUser = exports.postWord = void 0;
+exports.deleteWord = exports.getUser = exports.postWord = void 0;
 const db_1 = __importDefault(require("../db"));
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const private_key = process.env.PRIVATEKEY || '';
@@ -66,3 +66,20 @@ const getUser = (req, res) => {
     jsonwebtoken_1.default.verify(token, private_key, verify_callback);
 };
 exports.getUser = getUser;
+// UPDATE
+// DELETE
+const deleteWord = (req, res) => {
+    const UUID = req.body.uuid;
+    const del = () => __awaiter(void 0, void 0, void 0, function* () {
+        try {
+            db_1.default.query(`DELETE FROM words WHERE uuid = $1;`, [UUID]);
+            res.status(200).json('DELETED');
+        }
+        catch (err) {
+            console.log(err.message);
+            res.status(400).json(err.message);
+        }
+    });
+    del();
+};
+exports.deleteWord = deleteWord;

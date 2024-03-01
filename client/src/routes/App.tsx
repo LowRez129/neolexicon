@@ -1,6 +1,6 @@
 import './App.css';
-import Catalogue from '../component/Catalogue';
-import MenuBar from '../component/MenuBar';
+import Catalogue from '../component/App/Catalogue';
+import MenuBar from '../component/App/MenuBar';
 
 function App() {
   return (

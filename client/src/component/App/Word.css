@@ -1,13 +1,13 @@
-.music {
+.word-container {
     display: flex;
 }
 
-.music > .description {
+.word-container > .description {
     display: flex;
     flex-direction: column;
 }
 
-.music > .word {
+.word-container > .word {
     height: 50px;
     width: minmax(100px, auto);
     background-color: grey;   

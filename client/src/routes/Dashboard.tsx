@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import './Dashboard.css';
-import PostMusic from "../component/PostWord";
-import Word from "../component/Word";
+import PostMusic from "../component/Dashboard/PostWord";
+import PutWord from "../component/Dashboard/PutWord";
 
 export default function Dashboard () {
         type Data = { uuid: string, word: string, description: string }
@@ -24,10 +24,9 @@ export default function Dashboard () {
 
     const word_map = () => {
         return user.map(({ uuid, word, description }) => {
-            return <Word word={word} description={description} key={uuid}/>
+            return <PutWord word={word} description={description} uuid={uuid} key={uuid} />
         })
     }
-    console.log(user);
  
     return (
         <main className="dashboard">

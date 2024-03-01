@@ -64,7 +64,24 @@ const getUser: RequestHandler = (req, res) => {
 // UPDATE
 
 // DELETE
+const deleteWord: RequestHandler = (req: Request<{}, {}, {uuid: string}>, res) => {
+    const UUID = req.body.uuid;
+
+    const del = async () => {
+        try {
+            pool.query(
+                `DELETE FROM words WHERE uuid = $1;`,
+                [UUID]
+            );
+            res.status(200).json('DELETED');
+        } catch (err: any) {
+            console.log(err.message);
+            res.status(400).json(err.message);
+        }
+    }
+    del();
+}
 
 
 
-export { postWord, getUser };
+export { postWord, getUser, deleteWord };

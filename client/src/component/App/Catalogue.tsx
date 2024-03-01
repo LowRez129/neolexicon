@@ -1,4 +1,4 @@
-import WordsInterface from '../interface/words_interface';
+import WordsInterface from '../../interface/words_interface';
 import './Catalogue.css';
 import { useState, useEffect } from 'react';
 import Word from './Word';
