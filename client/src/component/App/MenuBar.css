@@ -1,10 +1,13 @@
 .menu-bar {
-    display: flex;
-    flex-direction: column;
     width: 20%;
 }
 
-.menu-bar > .button-container {
-    display: flex;
-    justify-content: space-evenly;
+.button-container {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+}
+
+.searchbar {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
 }

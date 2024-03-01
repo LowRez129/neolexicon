@@ -4,6 +4,7 @@
 
 .input-container {
     display: grid;
+    grid-template-rows: repeat(2, auto);
 }
 
 .input-container > .description {

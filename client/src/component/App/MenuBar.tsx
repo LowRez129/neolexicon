@@ -34,8 +34,8 @@ export default function MenuBar () {
             <div className='button-container'>
                 {show}
             </div>
-            <form style={{display: "flex"}}>
-                <input style={{width: "100%"}} placeholder='Search'/>
+            <form className='searchbar'>
+                <input placeholder='Search'/>
                 <button>Enter</button>
             </form>
         </section>

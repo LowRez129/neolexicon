@@ -43,16 +43,16 @@ export default function PutWord ({ uuid, word_prop, description_prop } : PostTyp
         }
     }
 
-    const edit_button = (toggle_edit == false) ? <button className="edit-button" onClick={() => setToggleEdit(!toggle_edit)}>Edit</button> : <></>
     const post = (toggle_edit == false) ? (
         <div className="post" >
-            <div>{word_prop}</div>
-            <div>{description_prop}</div>
+            <div className="word" >{word_prop}</div>
+            <p className="description">{description_prop}</p>
+            <button className="edit-button" onClick={() => setToggleEdit(!toggle_edit)}>Edit</button>
         </div>
     ) : (
         <form className='input-container' onSubmit={putWord}>
-            <input className='word' type="text" placeholder={word_prop} onChange={(e) => setWordInput(e.target.value.toLowerCase())}/>
-            <textarea className='description' placeholder={description_prop} onChange={(e) => setDescriptionInput(e.target.value)}/>
+            <input className='word-input' type="text" placeholder={word_prop} onChange={(e) => setWordInput(e.target.value.toLowerCase())}/>
+            <textarea className='description-input' placeholder={description_prop} onChange={(e) => setDescriptionInput(e.target.value)}/>
             <div className="button-container">
                 <button onClick={() => setToggleEdit(!toggle_edit)} >Cancel</button>
                 <button type="submit" >Confirm</button>
@@ -64,7 +64,6 @@ export default function PutWord ({ uuid, word_prop, description_prop } : PostTyp
     return (
         <div className="putword-container">
             {post}
-            {edit_button}
         </div>
     )
 }

@@ -8,10 +8,13 @@
     grid-template-columns: repeat(3, auto);
 }
 
-.edit-button {
-    height: 50px;
+.input-container {
+    display: grid;
+    background-color: aquamarine;
 }
 
 .post {
     background-color: blanchedalmond;
+    display: grid;
+    grid-row: 1 / 5;
 }
