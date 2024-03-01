@@ -25,11 +25,9 @@ export default function PostMusic () {
 
     return (
         <main className="post-music">
-            <form onSubmit={post} className="post-form">
-                <div className='input-container'>
-                    <input required className='word' type="text" placeholder='word' onChange={(e) => setWord(e.target.value.toLowerCase())}/>
-                    <textarea required className='description' placeholder='description' onChange={(e) => setDescription(e.target.value) }/>
-                </div>
+            <form onSubmit={post} className="post-form">      
+                <input required className='word' type="text" placeholder='word' onChange={(e) => setWord(e.target.value.toLowerCase())}/>
+                <textarea required className='description' placeholder='description' onChange={(e) => setDescription(e.target.value) }/>
                 <button className='submit-button'>Post</button>
             </form>
         </main>

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import Logout from './Logout';
 import './MenuBar.css';
+import SearchBar from './SearchBar';
 
 export default function MenuBar () {
     const [login, setLogin] = useState(false);
@@ -34,10 +35,7 @@ export default function MenuBar () {
             <div className='button-container'>
                 {show}
             </div>
-            <form className='searchbar'>
-                <input placeholder='Search'/>
-                <button>Enter</button>
-            </form>
+            <SearchBar/>
         </section>
     )
 }

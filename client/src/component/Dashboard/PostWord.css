@@ -1,13 +1,4 @@
 .post-form {
     display: grid;
-}
-
-.input-container {
-    display: grid;
-    grid-template-rows: repeat(2, auto);
-}
-
-.input-container > .description {
-    height: 100px;
-    
+    grid-template-rows: auto 200px auto;
 }

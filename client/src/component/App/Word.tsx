@@ -17,7 +17,7 @@ function Word ({ word, description } : WordProp) {
 
     return (
         <div className='word-container'>
-            <button className='word' onClick={toggleDescription}>{word}</button>
+            <button className='word-button' onClick={toggleDescription}>{word}</button>
             {description_container}
         </div>
     )

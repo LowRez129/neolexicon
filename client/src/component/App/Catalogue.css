@@ -1,5 +1,7 @@
 .catalogue {
-    display: flex;
+    display: grid;
     width: 80%;
     background-color: wheat;
+    grid-template-columns: repeat(8, auto);
+    overflow: scroll;
 }

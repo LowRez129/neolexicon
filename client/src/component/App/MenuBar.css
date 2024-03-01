@@ -2,12 +2,8 @@
     width: 20%;
 }
 
-.button-container {
+.menu-bar > .button-container {
     display: grid;
-    grid-template-columns: repeat(2, auto);
-}
-
-.searchbar {
-    display: grid;
-    grid-template-columns: repeat(2, auto);
+    grid-template-columns: repeat(2, 50%);
+    background-color: green;
 }

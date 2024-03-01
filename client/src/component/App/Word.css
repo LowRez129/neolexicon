@@ -1,5 +1,6 @@
 .word-container {
     display: flex;
+    flex-direction: column;
 }
 
 .word-container > .description {
@@ -7,8 +8,7 @@
     flex-direction: column;
 }
 
-.word-container > .word {
-    height: 50px;
-    width: minmax(100px, auto);
+.word-container > .word-button {
     background-color: grey;   
+    font-size: larger;
 }
