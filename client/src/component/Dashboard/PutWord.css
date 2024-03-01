@@ -1,0 +1,17 @@
+.putword-container {
+    display: grid;
+    background-color: rebeccapurple;
+}
+
+.button-container {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+}
+
+.edit-button {
+    height: 50px;
+}
+
+.post {
+    background-color: blanchedalmond;
+}

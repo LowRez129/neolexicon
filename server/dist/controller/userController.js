@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteWord = exports.getUser = exports.postWord = void 0;
+exports.putWord = exports.deleteWord = exports.getUser = exports.postWord = void 0;
 const db_1 = __importDefault(require("../db"));
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const private_key = process.env.PRIVATEKEY || '';
@@ -67,12 +67,26 @@ const getUser = (req, res) => {
 };
 exports.getUser = getUser;
 // UPDATE
+const putWord = (req, res) => {
+    const { uuid, word, description } = req.body;
+    const put = () => __awaiter(void 0, void 0, void 0, function* () {
+        try {
+            yield db_1.default.query(`UPDATE words SET word = $2, description = $3 WHERE uuid = $1;`, [uuid, word, description]);
+            res.status(200).json('Put Success');
+        }
+        catch (err) {
+            res.status(400).json(err.message);
+        }
+    });
+    put();
+};
+exports.putWord = putWord;
 // DELETE
 const deleteWord = (req, res) => {
     const UUID = req.body.uuid;
     const del = () => __awaiter(void 0, void 0, void 0, function* () {
         try {
-            db_1.default.query(`DELETE FROM words WHERE uuid = $1;`, [UUID]);
+            yield db_1.default.query(`DELETE FROM words WHERE uuid = $1;`, [UUID]);
             res.status(200).json('DELETED');
         }
         catch (err) {

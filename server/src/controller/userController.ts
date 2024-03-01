@@ -62,6 +62,22 @@ const getUser: RequestHandler = (req, res) => {
 }
 
 // UPDATE
+const putWord: RequestHandler = (req: Request<{}, {}, {uuid: string, word: string, description: string}>, res) => {
+    const { uuid, word, description } = req.body;
+
+    const put = async () => {
+        try {
+            await pool.query(
+                `UPDATE words SET word = $2, description = $3 WHERE uuid = $1;`,
+                [uuid, word, description]
+            )
+            res.status(200).json('Put Success');
+        } catch (err: any) {
+            res.status(400).json(err.message);
+        }
+    }
+    put();
+}
 
 // DELETE
 const deleteWord: RequestHandler = (req: Request<{}, {}, {uuid: string}>, res) => {
@@ -69,7 +85,7 @@ const deleteWord: RequestHandler = (req: Request<{}, {}, {uuid: string}>, res) =
 
     const del = async () => {
         try {
-            pool.query(
+            await pool.query(
                 `DELETE FROM words WHERE uuid = $1;`,
                 [UUID]
             );
@@ -84,4 +100,4 @@ const deleteWord: RequestHandler = (req: Request<{}, {}, {uuid: string}>, res) =
 
 
 
-export { postWord, getUser, deleteWord };
+export { postWord, getUser, deleteWord, putWord };

@@ -24,18 +24,17 @@ export default function Dashboard () {
 
     const word_map = () => {
         return user.map(({ uuid, word, description }) => {
-            return <PutWord word={word} description={description} uuid={uuid} key={uuid} />
+            return <PutWord word_prop={word} description_prop={description} uuid={uuid} key={uuid} />
         })
     }
  
     return (
         <main className="dashboard">
             <section className="menu-bar">
-                <a href="/">home</a>
-                <div>{}</div>
+                <input className="home-button" type="button"  onClick={() => window.location.href = '/'} value={"Home"}/>
+                <PostMusic/>
             </section>
             <section className="posts">
-                <PostMusic/>
                 {word_map()}
             </section>
         </main>
