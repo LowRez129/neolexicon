@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import Logout from './Logout';
 import './MenuBar.css';
 import SearchBar from './SearchBar';
+import WordsInterface from '../../interface/words_interface';
+import PropType from 'prop-types';
 
 export default function MenuBar () {
     const [login, setLogin] = useState(false);

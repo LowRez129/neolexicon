@@ -4,3 +4,11 @@
     background-color: gold;
     height: 100%;
 }
+
+.catalogue {
+    display: grid;
+    background-color: wheat;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: minmax(150px, auto);
+    overflow: scroll;
+}
