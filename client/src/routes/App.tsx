@@ -11,21 +11,6 @@ function App() {
     const [word_input, setWordInput] = useState('');
 
     useEffect(() => {
-        const data = async () => {
-            try {
-                const promise = await fetch('http://localhost:5000', { credentials: 'include' });
-                const json = await promise.json();
-                setPending(false);
-                setCatalogues(json);
-            } catch (err: any) {
-                setError(err);
-            }
-        }
-
-        data();
-    }, [])
-
-    useEffect(() => {
         const getWords = async () => {
             try {
                 const body = { word_input };
@@ -35,10 +20,11 @@ function App() {
                     body: JSON.stringify(body)
                 });
                 const json = await promise.json()
+                setPending(false);
                 setCatalogues(json)
     
-            } catch (err) {
-                console.log(err.message);
+            } catch (err: any) {
+                setError(err);
             }
         }
         getWords()

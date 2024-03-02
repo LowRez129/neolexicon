@@ -10,20 +10,6 @@ export default function Dashboard () {
     const [word_input, setWordInput] = useState('');
 
     useEffect(() => {
-        const User = async () => {
-            try {
-                const data = await fetch("http://localhost:5000/user", { credentials: "include" });
-                const parsed: Data[] = await data.json();              
-                setUser(parsed);
-            } catch (err: any) {
-                console.log(err.message);
-                window.location.href = '/login';
-            }
-        }
-        User();
-    }, [])
-
-    useEffect(() => {
         const getWords = async () => {
             try {
                 const body = { word_input };
