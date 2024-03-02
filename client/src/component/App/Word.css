@@ -1,14 +1,14 @@
 .word-container {
-    display: flex;
-    flex-direction: column;
-}
-
-.word-container > .description {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-auto-columns: minmax(auto, 200px);
+    grid-auto-rows: minmax(100px, auto);
 }
 
 .word-container > .word-button {
     background-color: grey;   
     font-size: larger;
+}
+
+.word-container > .description {
+    overflow-wrap: break-word;
 }

@@ -31,7 +31,7 @@ export default function Dashboard () {
     return (
         <main className="dashboard">
             <section className="dashboard-menu-bar">
-                <input className="home-button" type="button"  onClick={() => window.location.href = '/'} value={"Home"}/>
+                <input className="home-button" type="button" onClick={() => window.location.href = '/'} value={"Home"}/>
                 <PostMusic/>
             </section>
             <section className="posts">
