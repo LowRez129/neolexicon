@@ -3,7 +3,6 @@ import { useState, useEffect } from 'react';
 import WordsInterface from '../interface/words_interface';
 import MenuBar from '../component/App/MenuBar';
 import Word from '../component/App/Word';
-//import SearchBar from '../component/App/SearchBar';
 
 function App() {
     const [catalogues, setCatalogues] = useState<(WordsInterface)[]>([]);
@@ -26,22 +25,24 @@ function App() {
         data();
     }, [])
 
-    const getWords = async (e: SyntheticEvent) => {
-        e.preventDefault();
-        try {
-            const body = { word_input };
-            const promise = await fetch('http://localhost:5000/search', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(body)
-            });
-            const json = await promise.json()
-            setCatalogues(json)
-
-        } catch (err) {
-            console.log(err.message);
+    useEffect(() => {
+        const getWords = async () => {
+            try {
+                const body = { word_input };
+                const promise = await fetch('http://localhost:5000/search', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(body)
+                });
+                const json = await promise.json()
+                setCatalogues(json)
+    
+            } catch (err) {
+                console.log(err.message);
+            }
         }
-    }
+        getWords()
+    }, [word_input])
     
     const music_map = () => {
         if (error) {return <div>{error.message}</div>}
@@ -54,10 +55,7 @@ function App() {
     return (
         <main className='app'>
             <MenuBar/>
-            <form className='searchbar' onSubmit={getWords}>
-                <input type="search" placeholder='Search' onChange={(e) => setWordInput(e.target.value)} name="q"/>
-                <button>Enter</button>
-            </form>
+            <input type="search" placeholder='Search' onChange={(e) => setWordInput(e.target.value)} name="q"/>
             <section className="catalogue">
                 {music_map()}
             </section>

@@ -12,8 +12,3 @@
     grid-template-rows: minmax(150px, auto);
     overflow: scroll;
 }
-
-.searchbar {
-    display: grid;
-    grid-template-columns: 80% 20%;
-}

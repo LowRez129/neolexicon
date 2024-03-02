@@ -90,7 +90,7 @@ const getSearch = (req, res) => {
     const get = () => __awaiter(void 0, void 0, void 0, function* () {
         const { word_input } = req.body;
         try {
-            const data = yield db_1.default.query(`SELECT word, description FROM words WHERE word LIKE $1`, [(word_input + '%')]);
+            const data = yield db_1.default.query(`SELECT uuid, word, description FROM words WHERE word LIKE $1`, [(word_input + '%')]);
             const words = data.rows;
             res.status(200).json(words);
         }

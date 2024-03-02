@@ -84,7 +84,7 @@ const getSearch: RequestHandler = (req: Request<{}, {}, {word_input: string}>, r
         const { word_input } = req.body;
         try {
             const data = await pool.query(
-                `SELECT word, description FROM words WHERE word LIKE $1`,
+                `SELECT uuid, word, description FROM words WHERE word LIKE $1`,
                 [(word_input + '%')]
             )
             const words = data.rows;
