@@ -30,7 +30,7 @@ export default function Dashboard () {
  
     return (
         <main className="dashboard">
-            <section className="menu-bar">
+            <section className="dashboard-menu-bar">
                 <input className="home-button" type="button"  onClick={() => window.location.href = '/'} value={"Home"}/>
                 <PostMusic/>
             </section>

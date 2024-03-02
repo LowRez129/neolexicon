@@ -1,6 +1,10 @@
+.post-word {
+    display: grid;
+}
+
 .post-form {
     display: grid;
-    grid-template-rows: auto 200px auto;
+    grid-template-rows: 10% 80% 10%;
 }
 
 .post-form > .description {

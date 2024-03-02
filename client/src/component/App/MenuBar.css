@@ -1,5 +1,6 @@
 .menu-bar {
-    width: 20%;
+    display: grid;
+    grid-template-columns: auto auto;
 }
 
 .menu-bar > .button-container {

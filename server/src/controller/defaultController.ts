@@ -79,9 +79,26 @@ const getMusic: RequestHandler = (req, res) => {
     get();
 }
 
+const getSearch: RequestHandler = (req: Request<{}, {}, {word_input: string}>, res) => {
+    const get = async () => {
+        const { word_input } = req.body;
+        try {
+            const data = await pool.query(
+                `SELECT word FROM words WHERE word = $1`,
+                [word_input]
+            )
+            const words = data.rows;
+            res.status(200).json(words);
+        } catch (err: any) {
+            res.status(400).json(err.message)
+        }
+    }
+    get();
+}
+
 const getLogout: RequestHandler = (req, res)=> {
     res.cookie('jwt', '', {maxAge: 1});
     res.end('logged out');
 };
 
-export { postSignIn, postLogin, getMusic, getLogout };
+export { postSignIn, postLogin, getMusic, getSearch, getLogout };

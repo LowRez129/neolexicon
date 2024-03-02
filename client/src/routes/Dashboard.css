@@ -5,11 +5,9 @@
     grid-template-columns: 20% 80%;
 }
 
-.dashboard > .menu-bar {
-    background-color: aquamarine;
+.dashboard > .dashboard-menu-bar {
     display: grid;
-    grid-template-rows: 5% auto;
-    width: 100%;
+    grid-template-rows: 10% 90%;
 }
 
 .dashboard > .posts {
