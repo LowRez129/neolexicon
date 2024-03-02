@@ -7,7 +7,7 @@
 
 .dashboard > .dashboard-menu-bar {
     display: grid;
-    grid-template-rows: 10% 90%;
+    grid-template-rows: 10% 80% 10%;
 }
 
 .dashboard > .posts {

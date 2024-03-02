@@ -4,15 +4,16 @@ import PostMusic from "../component/Dashboard/PostWord";
 import PutWord from "../component/Dashboard/PutWord";
 
 export default function Dashboard () {
-        type Data = { uuid: string, word: string, description: string }
-        const DEFAULT = [{uuid: '', word: '', description: ''}]
-        const [user, setUser] = useState<Data[]>(DEFAULT);
+    type Data = { uuid: string, word: string, description: string }
+    const DEFAULT = [{uuid: '', word: '', description: ''}]
+    const [user, setUser] = useState<Data[]>(DEFAULT);
+    const [word_input, setWordInput] = useState('');
 
     useEffect(() => {
         const User = async () => {
             try {
                 const data = await fetch("http://localhost:5000/user", { credentials: "include" });
-                const parsed: Data = await data.json();              
+                const parsed: Data[] = await data.json();              
                 setUser(parsed);
             } catch (err: any) {
                 console.log(err.message);
@@ -21,6 +22,25 @@ export default function Dashboard () {
         }
         User();
     }, [])
+
+    useEffect(() => {
+        const getWords = async () => {
+            try {
+                const body = { word_input };
+                const promise = await fetch('http://localhost:5000/search', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(body)
+                });
+                const json = await promise.json()
+                setUser(json)
+    
+            } catch (err) {
+                console.log(err.message);
+            }
+        }
+        getWords()
+    }, [word_input])
 
     const word_map = () => {
         return user.map(({ uuid, word, description }) => {
@@ -33,6 +53,7 @@ export default function Dashboard () {
             <section className="dashboard-menu-bar">
                 <input className="home-button" type="button" onClick={() => window.location.href = '/'} value={"Home"}/>
                 <PostMusic/>
+                <input type="search" placeholder='Search' onChange={(e) => setWordInput(e.target.value)} name="q"/>
             </section>
             <section className="posts">
                 {word_map()}
