@@ -1,6 +1,6 @@
 .menu-bar {
     display: grid;
-    grid-template-columns: auto auto;
+    grid-template-columns: auto;
 }
 
 .menu-bar > .button-container {

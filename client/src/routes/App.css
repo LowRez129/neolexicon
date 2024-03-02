@@ -1,6 +1,6 @@
 .app {
     display: grid;
-    grid-template-rows: 10% 90%;
+    grid-template-rows: 10% 10% 80%;
     background-color: gold;
     height: 100%;
 }
@@ -11,4 +11,9 @@
     grid-template-columns: repeat(8, 1fr);
     grid-template-rows: minmax(150px, auto);
     overflow: scroll;
+}
+
+.searchbar {
+    display: grid;
+    grid-template-columns: 80% 20%;
 }
