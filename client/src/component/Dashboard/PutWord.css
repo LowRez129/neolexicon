@@ -13,8 +13,15 @@
     background-color: aquamarine;
 }
 
+.input-container > .description-input {
+    resize: none;
+}
+
 .post {
     background-color: blanchedalmond;
     display: grid;
-    grid-row: 1 / 5;
+}
+
+.post > .description {
+    overflow-wrap: break-word;
 }

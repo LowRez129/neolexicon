@@ -2,3 +2,7 @@
     display: grid;
     grid-template-rows: auto 200px auto;
 }
+
+.post-form > .description {
+    resize: none;
+}

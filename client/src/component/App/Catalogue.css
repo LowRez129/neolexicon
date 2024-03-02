@@ -2,6 +2,6 @@
     display: grid;
     width: 80%;
     background-color: wheat;
-    grid-template-columns: repeat(8, auto);
+    grid-template-columns: repeat(8, minmax(100px, auto));
     overflow: scroll;
 }

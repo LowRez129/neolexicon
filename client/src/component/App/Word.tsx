@@ -10,9 +10,7 @@ function Word ({ word, description } : WordProp) {
     }
 
     const description_container = (toggle == true) ? (
-        <div className='description'>
-            <div>{description}</div>
-        </div>
+        <p className='description'>{description}</p>
     ) : <></>;
 
     return (
