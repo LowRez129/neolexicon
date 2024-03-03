@@ -4,8 +4,8 @@ import PostMusic from "../component/Dashboard/PostWord";
 import PutWord from "../component/Dashboard/PutWord";
 
 export default function Dashboard () {
-    type Data = { uuid: string, word: string, description: string }
-    const DEFAULT = [{uuid: '', word: '', description: ''}]
+    type Data = { uuid: string, word: string, description: string };
+    const DEFAULT = [{uuid: '', word: '', description: ''}];
     const [user, setUser] = useState<Data[]>(DEFAULT);
     const [word_input, setWordInput] = useState('');
 
@@ -16,14 +16,20 @@ export default function Dashboard () {
                 const promise = await fetch('http://localhost:5000/user/search', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(body)
+                    body: JSON.stringify(body),
+                    credentials: 'include'
                 });
+                if (!promise.ok) { 
+                    const error = await promise.json();
+                    throw Error(error);
+                }
+
                 const json = await promise.json()
                 setUser(json)
     
             } catch (err: any) {
                 console.log(err.message);
-                window.location.href = '/login';
+                if (err.message == 'Missing JWT') { window.location.href = '/login' }
             }
         }
         getWords()
@@ -39,8 +45,8 @@ export default function Dashboard () {
         <main className="dashboard">
             <section className="dashboard-menu-bar">
                 <input className="home-button" type="button" onClick={() => window.location.href = '/'} value={"Home"}/>
-                <PostMusic/>
                 <input type="search" placeholder='Search' onChange={(e) => setWordInput(e.target.value)} name="q"/>
+                <PostMusic/>
             </section>
             <section className="posts">
                 {word_map()}

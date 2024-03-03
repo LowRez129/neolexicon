@@ -8,7 +8,7 @@ const private_key = process.env.PRIVATEKEY || '';
 const requireAuth: RequestHandler = (req, res, next: NextFunction) => {
     const token = req.cookies.jwt;
 
-    if (!token) { return res.status(400).json('JWT is nonexistant.') }
+    if (!token) { return res.status(400).json('JWT nonexistant.') }
     const verify_callback: VerifyCallback = (err, decoded) => {
         if (err) {
             res.status(400).json('JWT cannot be decoded.');
@@ -22,7 +22,7 @@ const requireAuth: RequestHandler = (req, res, next: NextFunction) => {
 const checkUser = (req: Request, res: Response, next: NextFunction) => {
     const token = req.cookies.jwt
 
-    if (!token) { return res.status(400).end('missing jwt') };
+    if (!token) { return res.status(400).json('Missing JWT') };
     const verify_callback: VerifyCallback<any> = async (err, decoded) => {
         if (err) {
             console.log(err.message);

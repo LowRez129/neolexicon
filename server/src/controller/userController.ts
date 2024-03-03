@@ -33,25 +33,8 @@ const postWord: RequestHandler = (req: Request<{}, {}, Words>, res) => {
     jwt.verify(token, private_key, verify_callback);
 }
 
-const getSearch: RequestHandler = (req: Request<{}, {}, {word_input: string}>, res) => {
-    const get = async () => {
-        const { word_input } = req.body;
-        try {
-            const data = await pool.query(
-                `SELECT uuid, word, description FROM words WHERE word LIKE $1`,
-                [(word_input + '%')]
-            )
-            const words = data.rows;
-            res.status(200).json(words);
-        } catch (err: any) {
-            res.status(400).json(err.message)
-        }
-    }
-    get();
-}
-
 // READ
-const getUser: RequestHandler = (req, res) => {
+const getSearch: RequestHandler = (req: Request<{}, {}, {word_input: string}>, res) => {
     const token = req.cookies.jwt;
     const verify_callback: VerifyCallback<any> = async (err, decoded) => {
         if (err) { 
@@ -59,18 +42,16 @@ const getUser: RequestHandler = (req, res) => {
             res.status(400).json(err.message);
         }
         const get = async () => {
+            const { word_input } = req.body;
             try {
-                const user = await pool.query(
-                    `SELECT * FROM words WHERE user_uuid = $1;`,
-                    [decoded.uuid]
+                const data = await pool.query(
+                    `SELECT uuid, word, description FROM words WHERE word LIKE $1 AND user_uuid = $2;`,
+                    [(word_input + '%'), decoded.uuid]
                 )
-                
-                const user_properties = user.rows;
-                res.status(200).json(user_properties);
-    
+                const words = data.rows;
+                res.status(200).json(words);
             } catch (err: any) {
-                console.log(err.message);
-                res.status(400).json(err.message);
+                res.status(400).json(err.message)
             }
         }
         get();

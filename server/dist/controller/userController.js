@@ -42,23 +42,8 @@ const postWord = (req, res) => {
     jsonwebtoken_1.default.verify(token, private_key, verify_callback);
 };
 exports.postWord = postWord;
-const getSearch = (req, res) => {
-    const get = () => __awaiter(void 0, void 0, void 0, function* () {
-        const { word_input } = req.body;
-        try {
-            const data = yield db_1.default.query(`SELECT uuid, word, description FROM words WHERE word LIKE $1`, [(word_input + '%')]);
-            const words = data.rows;
-            res.status(200).json(words);
-        }
-        catch (err) {
-            res.status(400).json(err.message);
-        }
-    });
-    get();
-};
-exports.getSearch = getSearch;
 // READ
-const getUser = (req, res) => {
+const getSearch = (req, res) => {
     const token = req.cookies.jwt;
     const verify_callback = (err, decoded) => __awaiter(void 0, void 0, void 0, function* () {
         if (err) {
@@ -66,13 +51,13 @@ const getUser = (req, res) => {
             res.status(400).json(err.message);
         }
         const get = () => __awaiter(void 0, void 0, void 0, function* () {
+            const { word_input } = req.body;
             try {
-                const user = yield db_1.default.query(`SELECT * FROM words WHERE user_uuid = $1;`, [decoded.uuid]);
-                const user_properties = user.rows;
-                res.status(200).json(user_properties);
+                const data = yield db_1.default.query(`SELECT uuid, word, description FROM words WHERE word LIKE $1 AND user_uuid = $2;`, [(word_input + '%'), decoded.uuid]);
+                const words = data.rows;
+                res.status(200).json(words);
             }
             catch (err) {
-                console.log(err.message);
                 res.status(400).json(err.message);
             }
         });
@@ -80,6 +65,7 @@ const getUser = (req, res) => {
     });
     jsonwebtoken_1.default.verify(token, private_key, verify_callback);
 };
+exports.getSearch = getSearch;
 // UPDATE
 const putWord = (req, res) => {
     const { uuid, word, description } = req.body;

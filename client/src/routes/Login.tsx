@@ -20,9 +20,12 @@ export default function Login () {
                 credentials: "include"
             })
 
-            if(data.ok == true) { return window.location.href = '/dashboard'} 
-            const parsed = data.json()
-            parsed.then((value) => { return setError(value) });
+            if(!data.ok) { 
+                const parsed = data.json();
+                return parsed.then((value) => { return setError(value) });
+            }
+            
+            window.location.href = '/dashboard';
         } catch (err: any) {
             console.log(err.message);
             setError(err.message);
