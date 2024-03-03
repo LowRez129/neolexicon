@@ -44,11 +44,10 @@ export default function PutWord ({ uuid, word_prop, description_prop } : PostTyp
     }
 
     const post = (toggle_edit == false) ? (
-        <div className="post" >
+        <button className="post" onClick={() => setToggleEdit(!toggle_edit)}>
             <div className="word" >{word_prop}</div>
             <p className="description">{description_prop}</p>
-            <button className="edit-button" onClick={() => setToggleEdit(!toggle_edit)}>Edit</button>
-        </div>
+        </button>
     ) : (
         <form className='input-container' onSubmit={putWord}>
             <input minLength={1} maxLength={36} className='word-input' type="text" placeholder={word_prop} onChange={(e) => setWordInput(e.target.value.toLowerCase())}/>

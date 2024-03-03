@@ -53,7 +53,8 @@ const getSearch = (req, res) => {
         const get = () => __awaiter(void 0, void 0, void 0, function* () {
             const { word_input } = req.body;
             try {
-                const data = yield db_1.default.query(`SELECT uuid, word, description FROM words WHERE word LIKE $1 AND user_uuid = $2;`, [(word_input + '%'), decoded.uuid]);
+                const input = (word_input == '') ? (word_input + '%') : ('$' + word_input + '%');
+                const data = yield db_1.default.query(`SELECT uuid, word, description FROM words WHERE word LIKE $1 ESCAPE '$' AND user_uuid = $2;`, [input, decoded.uuid]);
                 const words = data.rows;
                 res.status(200).json(words);
             }

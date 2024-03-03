@@ -12,6 +12,8 @@
 
 .dashboard > .posts {
     display: grid;
-    grid-template-columns: repeat(3, auto);
+    grid-template-columns: repeat(8, auto);
     overflow: scroll;
+    gap: 5px;
+    margin: 5px;
 }

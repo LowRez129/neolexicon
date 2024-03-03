@@ -20,7 +20,7 @@
 .post {
     background-color: blanchedalmond;
     display: grid;
-    grid-template-columns: minmax(auto, 500px);
+    grid-template-columns: minmax(auto, 300px);
 }
 
 .post > .description {
