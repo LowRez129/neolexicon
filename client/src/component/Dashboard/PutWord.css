@@ -11,6 +11,7 @@
 .input-container {
     display: grid;
     background-color: aquamarine;
+    grid-template-rows: 10% 80% 10%;
 }
 
 .input-container > .description-input {
@@ -20,9 +21,10 @@
 .post {
     background-color: blanchedalmond;
     display: grid;
-    grid-template-columns: minmax(auto, 300px);
+    align-items: center;
 }
 
+.post > .word,
 .post > .description {
     overflow-wrap: break-word;
 }

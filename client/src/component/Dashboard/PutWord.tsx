@@ -46,12 +46,11 @@ export default function PutWord ({ uuid, word_prop, description_prop } : PostTyp
     const post = (toggle_edit == false) ? (
         <button className="post" onClick={() => setToggleEdit(!toggle_edit)}>
             <div className="word" >{word_prop}</div>
-            <p className="description">{description_prop}</p>
         </button>
     ) : (
         <form className='input-container' onSubmit={putWord}>
-            <input minLength={1} maxLength={36} className='word-input' type="text" placeholder={word_prop} onChange={(e) => setWordInput(e.target.value.toLowerCase())}/>
-            <textarea minLength={1} maxLength={500} className='description-input' placeholder={description_prop} onChange={(e) => setDescriptionInput(e.target.value)}/>
+            <input minLength={1} maxLength={36} className='word-input' type="text" value={word_input} onChange={(e) => setWordInput(e.target.value.toLowerCase())}/>
+            <textarea minLength={1} maxLength={500} className='description-input' value={description_input} onChange={(e) => setDescriptionInput(e.target.value)}/>
             <div className="button-container">
                 <button onClick={() => setToggleEdit(!toggle_edit)} >Cancel</button>
                 <button type="submit" >Confirm</button>
@@ -59,9 +58,12 @@ export default function PutWord ({ uuid, word_prop, description_prop } : PostTyp
             </div>
         </form>
     )
+    
+    const resize_column = (!toggle_edit) ? '' : 'auto/span 2';
+    const resize_row = (!toggle_edit) ? '' : 'auto/span 3';
 
     return (
-        <div className="putword-container">
+        <div className="putword-container" style={{gridColumn: `${resize_column}`, gridRow: `${resize_row}`}}>
             {post}
         </div>
     )
