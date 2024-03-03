@@ -1,10 +1,9 @@
-import { RequestHandler, Request,Response } from "express";
+import { RequestHandler, Request } from "express";
 import pool from "../db";
 import { QueryResult } from "pg";
 import User from "../interface/user_interface";
 import handleErrors from "../function/handle_errors";
 import createToken from "../function/create_token";
-import Words from "../interface/word_interface";
 
 // CREATE
 const postSignIn: RequestHandler = (req: Request<{}, {}, User>, res) => {
@@ -65,20 +64,6 @@ const postLogin: RequestHandler = (req, res) => {
 }
 
 // READ
-const getMusic: RequestHandler = (req, res) => {
-    const get = async () => {
-        try {
-            const data: QueryResult<Words> = await pool.query(`SELECT * FROM words;`);
-            res.status(200).send(data.rows);
-
-        } catch (err: any) {
-            console.log(err.message);
-            res.end();
-        }
-    }
-    get();
-}
-
 const getSearch: RequestHandler = (req: Request<{}, {}, {word_input: string}>, res) => {
     const get = async () => {
         const { word_input } = req.body;
@@ -101,4 +86,4 @@ const getLogout: RequestHandler = (req, res)=> {
     res.end('logged out');
 };
 
-export { postSignIn, postLogin, getMusic, getSearch, getLogout };
+export { postSignIn, postLogin, getSearch, getLogout };

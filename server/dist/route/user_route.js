@@ -9,8 +9,12 @@ const userController_1 = require("../controller/userController");
 const user_route = express_1.default.Router();
 user_route.get('/require-auth', authenticate_jwt_middleware_1.requireAuth);
 user_route.use('*', authenticate_jwt_middleware_1.checkUser);
+// CREATE
 user_route.post('/post', userController_1.postWord);
-user_route.get('/', userController_1.getUser);
+// READ
+user_route.post('/search', userController_1.getSearch);
+// UPDATE
 user_route.put('/put', userController_1.putWord);
+// DELETE
 user_route.delete('/delete', userController_1.deleteWord);
 exports.default = user_route;

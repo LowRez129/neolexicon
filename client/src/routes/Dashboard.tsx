@@ -13,7 +13,7 @@ export default function Dashboard () {
         const getWords = async () => {
             try {
                 const body = { word_input };
-                const promise = await fetch('http://localhost:5000/search', {
+                const promise = await fetch('http://localhost:5000/user/search', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(body)
@@ -21,8 +21,9 @@ export default function Dashboard () {
                 const json = await promise.json()
                 setUser(json)
     
-            } catch (err) {
+            } catch (err: any) {
                 console.log(err.message);
+                window.location.href = '/login';
             }
         }
         getWords()

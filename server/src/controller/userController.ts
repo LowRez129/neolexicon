@@ -33,6 +33,23 @@ const postWord: RequestHandler = (req: Request<{}, {}, Words>, res) => {
     jwt.verify(token, private_key, verify_callback);
 }
 
+const getSearch: RequestHandler = (req: Request<{}, {}, {word_input: string}>, res) => {
+    const get = async () => {
+        const { word_input } = req.body;
+        try {
+            const data = await pool.query(
+                `SELECT uuid, word, description FROM words WHERE word LIKE $1`,
+                [(word_input + '%')]
+            )
+            const words = data.rows;
+            res.status(200).json(words);
+        } catch (err: any) {
+            res.status(400).json(err.message)
+        }
+    }
+    get();
+}
+
 // READ
 const getUser: RequestHandler = (req, res) => {
     const token = req.cookies.jwt;
@@ -100,4 +117,4 @@ const deleteWord: RequestHandler = (req: Request<{}, {}, {uuid: string}>, res) =
 
 
 
-export { postWord, getUser, deleteWord, putWord };
+export { postWord, getSearch, deleteWord, putWord };

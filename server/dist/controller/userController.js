@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.putWord = exports.deleteWord = exports.getUser = exports.postWord = void 0;
+exports.putWord = exports.deleteWord = exports.getSearch = exports.postWord = void 0;
 const db_1 = __importDefault(require("../db"));
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const private_key = process.env.PRIVATEKEY || '';
@@ -42,6 +42,21 @@ const postWord = (req, res) => {
     jsonwebtoken_1.default.verify(token, private_key, verify_callback);
 };
 exports.postWord = postWord;
+const getSearch = (req, res) => {
+    const get = () => __awaiter(void 0, void 0, void 0, function* () {
+        const { word_input } = req.body;
+        try {
+            const data = yield db_1.default.query(`SELECT uuid, word, description FROM words WHERE word LIKE $1`, [(word_input + '%')]);
+            const words = data.rows;
+            res.status(200).json(words);
+        }
+        catch (err) {
+            res.status(400).json(err.message);
+        }
+    });
+    get();
+};
+exports.getSearch = getSearch;
 // READ
 const getUser = (req, res) => {
     const token = req.cookies.jwt;
@@ -65,7 +80,6 @@ const getUser = (req, res) => {
     });
     jsonwebtoken_1.default.verify(token, private_key, verify_callback);
 };
-exports.getUser = getUser;
 // UPDATE
 const putWord = (req, res) => {
     const { uuid, word, description } = req.body;

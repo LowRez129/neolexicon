@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getLogout = exports.getSearch = exports.getMusic = exports.postLogin = exports.postSignIn = void 0;
+exports.getLogout = exports.getSearch = exports.postLogin = exports.postSignIn = void 0;
 const db_1 = __importDefault(require("../db"));
 const handle_errors_1 = __importDefault(require("../function/handle_errors"));
 const create_token_1 = __importDefault(require("../function/create_token"));
@@ -72,20 +72,6 @@ const postLogin = (req, res) => {
 };
 exports.postLogin = postLogin;
 // READ
-const getMusic = (req, res) => {
-    const get = () => __awaiter(void 0, void 0, void 0, function* () {
-        try {
-            const data = yield db_1.default.query(`SELECT * FROM words;`);
-            res.status(200).send(data.rows);
-        }
-        catch (err) {
-            console.log(err.message);
-            res.end();
-        }
-    });
-    get();
-};
-exports.getMusic = getMusic;
 const getSearch = (req, res) => {
     const get = () => __awaiter(void 0, void 0, void 0, function* () {
         const { word_input } = req.body;
