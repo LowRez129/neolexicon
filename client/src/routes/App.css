@@ -8,7 +8,6 @@
 .catalogue {
     display: grid;
     background-color: wheat;
-    grid-template-columns: repeat(8, 1fr);
-    grid-template-rows: minmax(150px, auto);
+    grid-template-columns: repeat(6, auto);
     overflow: scroll;
 }

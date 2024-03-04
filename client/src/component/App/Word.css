@@ -1,6 +1,6 @@
 .word-container {
     display: grid;
-    grid-auto-columns: minmax(auto, 200px);
+    grid-auto-columns: minmax(200px, auto);
     grid-auto-rows: minmax(100px, auto);
 }
 
