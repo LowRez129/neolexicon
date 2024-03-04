@@ -2,15 +2,18 @@ import './Word.css';
 import { useState } from 'react';
 import words_proptypes from '../../proptype/Words_PropType';
 
-type WordProp = { word: string, description: string };
-function Word ({ word, description } : WordProp) {
+type WordProp = { user_uuid: string, word: string, description: string };
+function Word ({ user_uuid, word, description } : WordProp) {
     const [toggle, setToggle] = useState<boolean>(false);
     const toggleDescription = () => {
         setToggle(!toggle);
     }
 
     const description_container = (toggle == true) ? (
-        <p className='description'>{description}</p>
+        <>
+            <p className='description'>{description}</p>
+            <button onClick={() => window.location.href = `user/search?user=${user_uuid}`} >{user_uuid}</button>
+        </>
     ) : <></>;
 
     const resize_column = (!toggle) ? '' : 'auto / span 2';

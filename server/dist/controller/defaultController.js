@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getLogout = exports.getSearch = exports.postLogin = exports.postSignIn = void 0;
+exports.getLogout = exports.getUser = exports.getSearch = exports.postLogin = exports.postSignIn = void 0;
 const db_1 = __importDefault(require("../db"));
 const handle_errors_1 = __importDefault(require("../function/handle_errors"));
 const create_token_1 = __importDefault(require("../function/create_token"));
@@ -77,7 +77,11 @@ const getSearch = (req, res) => {
         const { word_input } = req.body;
         try {
             const input = (word_input == '') ? (word_input + '%') : ('$' + word_input + '%');
-            const data = yield db_1.default.query(`SELECT uuid, word, description FROM words WHERE word LIKE $1 ESCAPE '$';`, [input]);
+            const data = yield db_1.default.query(`
+                    SELECT uuid, word, description, user_uuid 
+                    FROM words 
+                    WHERE word LIKE $1 ESCAPE '$';
+                `, [input]);
             const words = data.rows;
             res.status(200).json(words);
         }
@@ -88,6 +92,26 @@ const getSearch = (req, res) => {
     get();
 };
 exports.getSearch = getSearch;
+const getUser = (req, res) => {
+    const get = () => __awaiter(void 0, void 0, void 0, function* () {
+        const { word_input, user_uuid } = req.body;
+        try {
+            const input = (word_input == '') ? (word_input + '%') : ('$' + word_input + '%');
+            const data = yield db_1.default.query(`
+                    SELECT uuid, word, description 
+                    FROM words 
+                    WHERE word LIKE $1 ESCAPE '$' AND user_uuid = $2;
+                `, [input, user_uuid]);
+            const words = data.rows;
+            res.status(200).json(words);
+        }
+        catch (err) {
+            res.status(400).json(err.message);
+        }
+    });
+    get();
+};
+exports.getUser = getUser;
 const getLogout = (req, res) => {
     res.cookie('jwt', '', { maxAge: 1 });
     res.end('logged out');

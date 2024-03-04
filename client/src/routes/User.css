@@ -1,0 +1,23 @@
+.user {
+    display: grid;
+    background-color: aqua;
+    grid-template-rows: 8% 92%;
+    height: 100%;
+}
+
+.user-menubar {
+    display: grid;
+    grid-template-columns: 10% 30% 60%;
+}
+
+.username {
+    align-self: center;
+    justify-self: center;
+}
+
+.user-words {
+    display: grid;
+    grid-template-columns: repeat(6, auto);
+    background-color: aquamarine;
+    overflow: scroll;
+}

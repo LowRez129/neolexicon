@@ -33,8 +33,8 @@ function App() {
     const music_map = () => {
         if (error) {return <div>{error.message}</div>}
         if (pending == true) {return <div>Pending...</div>}
-        return catalogues.map(({ word, description, uuid }) => {
-            return <Word word={word} description={description} key={uuid}/>
+        return catalogues.map(({ user_uuid, word, description, uuid }) => {
+            return <Word user_uuid={user_uuid} word={word} description={description} key={uuid}/>
         });
     }
 

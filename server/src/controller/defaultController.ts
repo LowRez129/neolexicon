@@ -70,9 +70,37 @@ const getSearch: RequestHandler = (req: Request<{}, {}, {word_input: string}>, r
         try {
             const input = (word_input == '') ? (word_input + '%') : ('$' + word_input + '%');
             const data = await pool.query(
-                `SELECT uuid, word, description FROM words WHERE word LIKE $1 ESCAPE '$';`,
+                `
+                    SELECT uuid, word, description, user_uuid 
+                    FROM words 
+                    WHERE word LIKE $1 ESCAPE '$';
+                `,
                 [input]
             )
+            
+            const words = data.rows;
+            res.status(200).json(words);
+        } catch (err: any) {
+            res.status(400).json(err.message)
+        }
+    }
+    get();
+}
+
+const getUser: RequestHandler = (req: Request<{}, {}, {word_input: string, user_uuid: string}>, res) => {
+    const get = async () => {
+        const { word_input, user_uuid } = req.body;
+        try {
+            const input = (word_input == '') ? (word_input + '%') : ('$' + word_input + '%');
+            const data = await pool.query(
+                `
+                    SELECT uuid, word, description 
+                    FROM words 
+                    WHERE word LIKE $1 ESCAPE '$' AND user_uuid = $2;
+                `,
+                [input, user_uuid]
+            )
+            
             const words = data.rows;
             res.status(200).json(words);
         } catch (err: any) {
@@ -87,4 +115,4 @@ const getLogout: RequestHandler = (req, res)=> {
     res.end('logged out');
 };
 
-export { postSignIn, postLogin, getSearch, getLogout };
+export { postSignIn, postLogin, getSearch, getUser, getLogout };

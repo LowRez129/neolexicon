@@ -4,6 +4,7 @@ import ErrorPage from './routes/ErrorPage';
 import SignIn from './routes/SignIn';
 import Login from './routes/Login';
 import Dashboard from './routes/Dashboard';
+import User from './routes/User';
 
 export default function Router () {
     const router = createBrowserRouter([
@@ -26,6 +27,11 @@ export default function Router () {
           path: "/dashboard",
           element: <Dashboard/>,
           errorElement: <ErrorPage />
+        },
+        {
+          path: "/user/:username",
+          element: <User/>,
+          errorElement: <ErrorPage/>
         }
       ]);
       
