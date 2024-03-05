@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import Logout from './Logout';
-import './MenuBar.css';
+import './MenuButtons.css';
 
-export default function MenuBar () {
+export default function MenuButtons () {
     const [login, setLogin] = useState(false);
     useEffect(() => {
         const check_jwt = async () => {
@@ -30,10 +30,6 @@ export default function MenuBar () {
 
 
     return (
-        <section className="menu-bar">
-            <div className='button-container'>
-                {show}
-            </div>
-        </section>
+        <div className='menubar'>{show}</div>
     )
 }

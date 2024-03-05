@@ -1,11 +1,16 @@
 .app {
     display: grid;
-    grid-template-rows: 10% 10% 80%;
+    grid-template-rows: 10% 90%;
     background-color: gold;
     height: 100%;
 }
 
-.catalogue {
+.menubar {
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+
+.words {
     display: grid;
     background-color: wheat;
     grid-template-columns: repeat(6, auto);

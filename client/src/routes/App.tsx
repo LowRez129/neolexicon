@@ -1,8 +1,8 @@
 import './App.css';
 import { useState, useEffect } from 'react';
 import WordsInterface from '../interface/words_interface';
-import MenuBar from '../component/App/MenuBar';
 import Word from '../component/App/Word';
+import MenuButtons from '../component/App/MenuButtons';
 
 function App() {
     const [catalogues, setCatalogues] = useState<(WordsInterface)[]>([]);
@@ -30,7 +30,7 @@ function App() {
         getWords()
     }, [word_input])
     
-    const music_map = () => {
+    const word_map = () => {
         if (error) {return <div>{error.message}</div>}
         if (pending == true) {return <div>Pending...</div>}
         return catalogues.map(({ user_uuid, word, description, uuid }) => {
@@ -40,10 +40,12 @@ function App() {
 
     return (
         <main className='app'>
-            <MenuBar/>
-            <input type="search" placeholder='Search' onChange={(e) => setWordInput(e.target.value)} name="q"/>
-            <section className="catalogue">
-                {music_map()}
+            <section className='menubar'>
+                <MenuButtons/>
+                <input type="search" placeholder='Search' onChange={(e) => setWordInput(e.target.value)} name="q"/>
+            </section>
+            <section className="words">
+                {word_map()}
             </section>
         </main>
     )
