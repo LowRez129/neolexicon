@@ -1,7 +1,10 @@
 .word-container {
     display: grid;
-    grid-auto-columns: minmax(200px, auto);
-    grid-auto-rows: minmax(100px, auto);
+}
+
+.word-container > .view-container {
+    display: grid;
+    grid-template-rows: 20% 60% 20%;
 }
 
 .word-container > .word-button {

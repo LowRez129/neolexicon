@@ -13,6 +13,7 @@
 .words {
     display: grid;
     background-color: wheat;
-    grid-template-columns: repeat(6, auto);
+    grid-template-columns: repeat(6, 1fr);
+    grid-auto-rows: minmax(100px, auto);
     overflow: scroll;
 }

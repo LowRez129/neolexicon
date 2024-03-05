@@ -18,6 +18,7 @@
 .user-words {
     display: grid;
     grid-template-columns: repeat(6, auto);
+    grid-auto-rows: minmax(100px, auto);
     background-color: aquamarine;
     overflow: scroll;
 }
