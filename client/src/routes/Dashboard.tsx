@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import './Dashboard.css';
-import PostMusic from "../component/Dashboard/PostWord";
+import PostWord from "../component/Dashboard/PostWord";
 import PutWord from "../component/Dashboard/PutWord";
 
 export default function Dashboard () {
@@ -8,6 +8,7 @@ export default function Dashboard () {
     const DEFAULT = [{uuid: '', word: '', description: ''}];
     const [user, setUser] = useState<Data[]>(DEFAULT);
     const [word_input, setWordInput] = useState('');
+    const [post_toggle, setPostToggle] = useState(false);
 
     useEffect(() => {
         const getWords = async () => {
@@ -40,13 +41,16 @@ export default function Dashboard () {
             return <PutWord word_prop={word} description_prop={description} uuid={uuid} key={uuid} />
         })
     }
+
+    const show_post = (post_toggle) ? <PostWord callback={() => setPostToggle(!post_toggle)} /> : <></>;
  
     return (
         <main className="dashboard">
             <section className="dashboard-menu-bar">
-                <input className="home-button" type="button" onClick={() => window.location.href = '/'} value={"Home"}/>
+                <button className="home-button" type="button" onClick={() => window.location.href = '/'}>Home</button>
+                <button onClick={() => setPostToggle(!post_toggle)} >Post</button>
+                {show_post}
                 <input type="search" placeholder='Search' onChange={(e) => setWordInput(e.target.value)} name="q"/>
-                <PostMusic/>
             </section>
             <section className="posts">
                 {word_map()}

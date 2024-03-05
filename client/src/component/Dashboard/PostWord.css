@@ -1,12 +1,32 @@
 .post-word {
     display: grid;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 250px;
+    height: 300px;
 }
 
 .post-form {
     display: grid;
+    grid-template-columns: 90% 10%;
     grid-template-rows: 10% 80% 10%;
+    grid-template-areas: "word exit-button" "description description" "submit-button submit-button";
+}
+.post-form > .word {
+    grid-area: word;
+}
+
+.post-form > .exit-button {
+    grid-area: exit-button;
 }
 
 .post-form > .description {
     resize: none;
+    grid-area: description;
+}
+
+.post-form > .submit-button {
+    grid-area: submit-button;
 }
