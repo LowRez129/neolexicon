@@ -60,7 +60,7 @@ export default function PutWord ({ uuid, word_prop, description_prop } : PostTyp
     )
     
     const resize_column = (!toggle_edit) ? '' : 'auto/span 2';
-    const resize_row = (!toggle_edit) ? '' : 'auto/span 3';
+    const resize_row = (!toggle_edit) ? '' : 'auto/span 4';
 
     return (
         <div className="putword-container" style={{gridColumn: `${resize_column}`, gridRow: `${resize_row}`}}>

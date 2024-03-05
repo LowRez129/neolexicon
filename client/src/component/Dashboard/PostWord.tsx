@@ -2,8 +2,7 @@ import { SyntheticEvent, useState } from 'react';
 import './PostWord.css';
 import WordsInterface from '../../interface/words_interface';
 
-interface CallbackInterface { callback: FunctionConstructor }
-export default function PostWord ({callback} : CallbackInterface) {
+export default function PostWord ({ callback } : { callback: () => void }) {
     const [word, setWord] = useState('');
     const [description, setDescription] = useState('');
 
