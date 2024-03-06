@@ -30,6 +30,6 @@ export default function MenuButtons () {
 
 
     return (
-        <div className='menubar'>{show}</div>
+        <div className='menubar-buttons'>{show}</div>
     )
 }

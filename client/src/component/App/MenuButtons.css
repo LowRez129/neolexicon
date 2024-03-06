@@ -1,4 +1,4 @@
-.menubar {
+.menubar-buttons {
     display: grid;
     grid-template-columns: repeat(2, 50%);
     background-color: green;
