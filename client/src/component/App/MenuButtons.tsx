@@ -18,7 +18,7 @@ export default function MenuButtons () {
         }
     
         check_jwt();
-    })
+    }, [])
 
     const show = (login == false) ? <>
         <input type="button" onClick={() => window.location.href = "/sign-in"} value="Sign In"/>

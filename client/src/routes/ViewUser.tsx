@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import './User.css';
+import './ViewUser.css';
 import Word from "../component/App/Word";
 
-export default function User () {
+export default function ViewUser () {
     const url = new URL(window.location.href).searchParams;
     const parameter = url.get('user');
     const user_uuid = (parameter == null) ? '' : parameter;

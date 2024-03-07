@@ -4,7 +4,7 @@ import ErrorPage from './routes/ErrorPage';
 import SignIn from './routes/SignIn';
 import Login from './routes/Login';
 import Dashboard from './routes/Dashboard';
-import User from './routes/User';
+import ViewUser from './routes/ViewUser';
 
 export default function Router () {
     const router = createBrowserRouter([
@@ -30,7 +30,7 @@ export default function Router () {
         },
         {
           path: "/user/:username",
-          element: <User/>,
+          element: <ViewUser/>,
           errorElement: <ErrorPage/>
         }
       ]);
