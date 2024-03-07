@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getLogout = exports.getUser = exports.getSearch = exports.postLogin = exports.postSignIn = void 0;
+exports.getLogout = exports.getUserPost = exports.getUser = exports.getSearch = exports.postLogin = exports.postSignIn = void 0;
 const db_1 = __importDefault(require("../db"));
 const handle_errors_1 = __importDefault(require("../function/handle_errors"));
 const create_token_1 = __importDefault(require("../function/create_token"));
@@ -94,6 +94,21 @@ const getSearch = (req, res) => {
 exports.getSearch = getSearch;
 const getUser = (req, res) => {
     const get = () => __awaiter(void 0, void 0, void 0, function* () {
+        const user_uuid = req.body.user_uuid;
+        try {
+            const data = yield db_1.default.query(`SELECT username FROM account WHERE uuid = $1`, [user_uuid]);
+            const username = data.rows[0].username;
+            res.status(200).json(username);
+        }
+        catch (err) {
+            res.status(400).json(err.message);
+        }
+    });
+    get();
+};
+exports.getUser = getUser;
+const getUserPost = (req, res) => {
+    const get = () => __awaiter(void 0, void 0, void 0, function* () {
         const { word_input, user_uuid } = req.body;
         try {
             const input = (word_input == '') ? (word_input + '%') : ('$' + word_input + '%');
@@ -111,7 +126,7 @@ const getUser = (req, res) => {
     });
     get();
 };
-exports.getUser = getUser;
+exports.getUserPost = getUserPost;
 const getLogout = (req, res) => {
     res.cookie('jwt', '', { maxAge: 1 });
     res.end('logged out');

@@ -12,5 +12,6 @@ default_route.post('/login', defaultController_1.postLogin);
 // READ
 default_route.post('/search', defaultController_1.getSearch);
 default_route.post('/search/user', defaultController_1.getUser);
+default_route.post('/search/user/post', defaultController_1.getUserPost);
 default_route.get('/logout', defaultController_1.getLogout);
 exports.default = default_route;

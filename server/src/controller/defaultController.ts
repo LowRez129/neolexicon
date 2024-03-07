@@ -87,7 +87,24 @@ const getSearch: RequestHandler = (req: Request<{}, {}, {word_input: string}>, r
     get();
 }
 
-const getUser: RequestHandler = (req: Request<{}, {}, {word_input: string, user_uuid: string}>, res) => {
+const getUser: RequestHandler = (req: Request<{}, {}, {user_uuid: string}>, res) => {
+    const get = async () => {
+        const user_uuid = req.body.user_uuid;
+        try {
+            const data: QueryResult<{username: string}> = await pool.query(
+                `SELECT username FROM account WHERE uuid = $1`,
+                [user_uuid]
+            )
+            const username = data.rows[0].username;
+            res.status(200).json(username);
+        } catch (err: any) {
+            res.status(400).json(err.message);
+        }
+    }
+    get();
+}
+
+const getUserPost: RequestHandler = (req: Request<{}, {}, {word_input: string, user_uuid: string}>, res) => {
     const get = async () => {
         const { word_input, user_uuid } = req.body;
         try {
@@ -115,4 +132,4 @@ const getLogout: RequestHandler = (req, res)=> {
     res.end('logged out');
 };
 
-export { postSignIn, postLogin, getSearch, getUser, getLogout };
+export { postSignIn, postLogin, getSearch, getUser, getUserPost, getLogout };
