@@ -2,8 +2,8 @@ import './Word.css';
 import { useState } from 'react';
 import words_proptypes from '../../proptype/Words_PropType';
 
-type WordProp = { user_uuid: string, word: string, description: string };
-function Word ({ user_uuid, word, description } : WordProp) {
+type WordProp = { username: string, user_uuid: string, word: string, description: string };
+function Word ({ username, user_uuid, word, description } : WordProp) {
     const [toggle, setToggle] = useState<boolean>(false);
     const toggleDescription = () => {
         setToggle(!toggle);
@@ -14,7 +14,7 @@ function Word ({ user_uuid, word, description } : WordProp) {
         <div className='view-container'>
             {word_button}
             <div className='description'>{description}</div>
-            <button className='view-user-button' onClick={() => window.location.href = `user/search?user=${user_uuid}`}>{user_uuid}</button>    
+            <button className='view-user-button' onClick={() => window.location.href = `user/search?user=${user_uuid}`}>{username}</button>    
         </div>
     ) : word_button;
 

@@ -71,12 +71,13 @@ const getSearch: RequestHandler = (req: Request<{}, {}, {word_input: string}>, r
             const input = (word_input == '') ? (word_input + '%') : ('$' + word_input + '%');
             const data = await pool.query(
                 `
-                    SELECT uuid, word, description, user_uuid 
-                    FROM words 
+                    SELECT w.uuid, word, description, user_uuid, a.username
+                    FROM words AS w INNER JOIN account AS a ON user_uuid = a.uuid
                     WHERE word LIKE $1 ESCAPE '$';
                 `,
                 [input]
             )
+            //`SELECT *, a.username FROM music INNER JOIN account AS a ON user_uuid = a.uuid WHERE user_uuid = $1;`
             
             const words = data.rows;
             res.status(200).json(words);

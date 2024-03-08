@@ -19,6 +19,12 @@ function App() {
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(body)
                 });
+
+                if (!promise.ok) { 
+                    const error = await promise.json();
+                    throw Error(error) 
+                }
+
                 const json = await promise.json()
                 setPending(false);
                 setCatalogues(json)
@@ -33,10 +39,11 @@ function App() {
     const word_map = () => {
         if (error) {return <div>{error.message}</div>}
         if (pending == true) {return <div>Pending...</div>}
-        return catalogues.map(({ user_uuid, word, description, uuid }) => {
-            return <Word user_uuid={user_uuid} word={word} description={description} key={uuid}/>
+        return catalogues.map(({ username, user_uuid, word, description, uuid }) => {
+            return <Word username={username} user_uuid={user_uuid} word={word} description={description} key={uuid}/>
         });
     }
+    console.log(catalogues);
 
     return (
         <main className='app'>
