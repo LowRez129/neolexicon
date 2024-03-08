@@ -1,17 +1,17 @@
-.word-container {
+.wword-container {
     display: grid;
 }
 
-.word-container > .view-container {
+.wword-container > #view-container {
     display: grid;
     grid-template-rows: 20% 60% 20%;
 }
 
-.word-container > .word-button {
+.wword-container > #word-button {
     background-color: grey;   
     font-size: larger;
 }
 
-.word-container > .description {
+.wword-container > #description {
     overflow-wrap: break-word;
 }

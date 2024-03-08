@@ -9,13 +9,14 @@ function Word ({ user_uuid, word, description } : WordProp) {
         setToggle(!toggle);
     }
 
+    const word_button = <button className='word-button' onClick={toggleDescription}>{word}</button>;
     const description_container = (toggle == true) ? (
         <div className='view-container'>
-            <button className='word-button' onClick={toggleDescription}>{word}</button>
-            <p className='description'>{description}</p>
-            <button onClick={() => window.location.href = `user/search?user=${user_uuid}`} >{user_uuid}</button>    
+            {word_button}
+            <div className='description'>{description}</div>
+            <button className='view-user-button' onClick={() => window.location.href = `user/search?user=${user_uuid}`}>{user_uuid}</button>    
         </div>
-    ) : <button className='word-button' onClick={toggleDescription}>{word}</button>;
+    ) : word_button;
 
     const resize_column = (!toggle) ? '' : 'auto / span 2';
     const resize_row = (!toggle) ? '' : 'auto / span 3';

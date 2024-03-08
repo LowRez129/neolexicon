@@ -4,14 +4,23 @@
 
 .word-container > .view-container {
     display: grid;
-    grid-template-rows: 20% 60% 20%;
+    grid-template-rows: 20% 70% 10%;
+    grid-auto-columns: minmax(100px, auto);
+    background-color: red;
 }
 
-.word-container > .word-button {
-    background-color: grey;   
+.word-container > .word-button,
+.word-container > .view-container > .word-button {
+    background-color: grey;
     font-size: larger;
+    border: none;
 }
 
-.word-container > .description {
+.word-container > .view-container > .description {
     overflow-wrap: break-word;
+    background-color: cornflowerblue;
+}
+
+.word-container > .view-container > .view-user-button {
+    border: none;
 }
