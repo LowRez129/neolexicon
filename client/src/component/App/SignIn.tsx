@@ -1,7 +1,7 @@
 import { SyntheticEvent, useState } from 'react';
 import './SignIn.css';
 
-export default function SignIn () {
+export default function SignIn ({ setToggleSignIn } : { setToggleSignIn: () => void }) {
     const [username, setUsername] = useState<string>('');
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState('');
@@ -34,19 +34,17 @@ export default function SignIn () {
     confirmPassword();
 
     return (
-        <main className="sign-in" >
-            <form onSubmit={onSubmitForm}>
-                <label>Username:</label>
-                <input placeholder='Username' type='text' required value={username} onChange={e => setUsername(e.target.value)}/>
-                <label>Email:</label>
-                <input placeholder="Email" type='email' required value={email} onChange={e => setEmail(e.target.value)}/>
-                <label>Password:</label>
-                <input placeholder="Password" type='password' required value={password} onChange={e => setPassword(e.target.value)}/>
-                <label>Confirm Password:</label>
-                <input placeholder="Confirm Password" type='password' required value={confirm_password} onChange={e => setConfirmPassword(e.target.value)}/>
-                <button>Submit</button>
-                <input type="button" onClick={() => window.location.href = "/"} value="Home" />
-            </form>
-        </main>
+        <form className='sign-in-form' onSubmit={onSubmitForm}>
+            <label>Username:</label>
+            <input placeholder='Username' type='text' required value={username} onChange={e => setUsername(e.target.value)}/>
+            <label>Email:</label>
+            <input placeholder="Email" type='email' required value={email} onChange={e => setEmail(e.target.value)}/>
+            <label>Password:</label>
+            <input placeholder="Password" type='password' required value={password} onChange={e => setPassword(e.target.value)}/>
+            <label>Confirm Password:</label>
+            <input placeholder="Confirm Password" type='password' required value={confirm_password} onChange={e => setConfirmPassword(e.target.value)}/>
+            <button>Submit</button>
+            <button type="button" className='close-sign-in-form' onClick={setToggleSignIn} >X</button>
+        </form>
     )
 }

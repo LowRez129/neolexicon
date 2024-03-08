@@ -1,0 +1,19 @@
+.sign-in-form {
+    display: grid;
+    gap: 1%;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: aquamarine;
+    padding: 15px;
+    border: solid;
+    height: 50%;
+}
+
+.close-sign-in-form {
+    position: absolute;
+    right: 0%;
+    border: none;
+    background-color: red;
+}

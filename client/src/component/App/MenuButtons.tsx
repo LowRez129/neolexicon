@@ -1,9 +1,14 @@
 import { useEffect, useState } from 'react';
 import Logout from './Logout';
 import './MenuButtons.css';
+import Login from './Login';
+import SignIn from './SignIn';
 
 export default function MenuButtons () {
     const [login, setLogin] = useState(false);
+    const [toggle_login, setToggleLogin] = useState(false);
+    const [toggle_sign_in, setToggleSignIn] = useState(false);
+
     useEffect(() => {
         const check_jwt = async () => {
             try {
@@ -20,9 +25,23 @@ export default function MenuButtons () {
         check_jwt();
     }, [])
 
+
+
+    const toggleSignIn = () => {
+        if (toggle_login) { setToggleLogin(!toggle_login) }
+        setToggleSignIn(!toggle_sign_in);
+    };
+    const toggleLogin = () => {
+        if (toggle_sign_in) { setToggleSignIn(!toggle_sign_in) }
+        setToggleLogin(!toggle_login);
+    };
+    
+    const show_sign_in = (toggle_sign_in) ? <SignIn setToggleSignIn={toggleSignIn}/> : <></>;
+    const show_login = (toggle_login) ? <Login setToggleLogin={toggleLogin}/> : <></>;
+
     const show = (login == false) ? <>
-        <input type="button" onClick={() => window.location.href = "/sign-in"} value="Sign In"/>
-        <input type="button" onClick={() => window.location.href = "/login"} value="Login"/>
+        <input type="button" onClick={toggleSignIn} value="Sign In"/>
+        <input type="button" onClick={toggleLogin} value="Login"/>
     </> : <>
         <input type="button" onClick={() => window.location.href = "/dashboard"} value="Dashboard"/>
         <Logout/>
@@ -30,6 +49,10 @@ export default function MenuButtons () {
 
 
     return (
-        <div className='menubar-buttons'>{show}</div>
+        <div className='menubar-buttons'>
+            {show}
+            {show_login}
+            {show_sign_in}
+        </div>
     )
 }

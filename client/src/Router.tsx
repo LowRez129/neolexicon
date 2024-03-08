@@ -1,8 +1,8 @@
 import {createBrowserRouter, RouterProvider} from 'react-router-dom';
 import App from './routes/App';
 import ErrorPage from './routes/ErrorPage';
-import SignIn from './routes/SignIn';
-import Login from './routes/Login';
+import SignIn from './component/App/SignIn';
+import Login from './component/App/Login';
 import Dashboard from './routes/Dashboard';
 import ViewUser from './routes/ViewUser';
 
@@ -12,16 +12,6 @@ export default function Router () {
           path: "/",
           element: <App/>,
           errorElement: <ErrorPage/>,
-        },
-        {
-            path: "/sign-in",
-            element: <SignIn/>,
-            errorElement: <ErrorPage/>
-        },
-        {
-          path: "/login",
-          element: <Login/>,
-          errorElement: <ErrorPage/>
         },
         {
           path: "/dashboard",
