@@ -11,9 +11,14 @@
 
 .word-container > .word-button,
 .word-container > .view-container > .word-button {
-    background-color: grey;
+    background-color: green;
     font-size: larger;
     border: none;
+}
+
+.word-container > .word-button:hover,
+.word-container > .view-container > .word-button:hover {
+    background-color: gray;
 }
 
 .word-container > .view-container > .description {

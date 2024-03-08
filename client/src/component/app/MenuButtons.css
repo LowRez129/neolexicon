@@ -1,9 +1,12 @@
 .menubar-buttons {
     display: grid;
     grid-template-columns: repeat(2, 50%);
-    background-color: green;
 }
 
 .menubar-buttons > input {
     border: none;
+    background-color: green;
+
+}.menubar-buttons > input:hover {
+    background-color: grey;
 }
