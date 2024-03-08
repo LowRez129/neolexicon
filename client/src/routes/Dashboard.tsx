@@ -47,10 +47,8 @@ export default function Dashboard () {
     return (
         <main className="dashboard">
             <section className="dashboard-menu-bar">
-                <div className="button-container">
-                    <button className="home-button" type="button" onClick={() => window.location.href = '/'}>Home</button>
-                    <button className="post-button" onClick={() => setPostToggle(!post_toggle)} >Post</button>
-                </div>
+                <button className="home-button" type="button" onClick={() => window.location.href = '/'}>Home</button>
+                <button className="post-button" onClick={() => setPostToggle(!post_toggle)} >Post</button>
                 {show_post}
                 <input className="searchbar" type="search" placeholder='Search' onChange={(e) => setWordInput(e.target.value)} name="q"/>
             </section>

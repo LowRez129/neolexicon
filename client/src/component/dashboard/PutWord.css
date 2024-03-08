@@ -1,27 +1,63 @@
 .putword-container {
     display: grid;
-    background-color: rebeccapurple;
 }
 
-.button-container {
+.put-form {
     display: grid;
-    grid-template-columns: repeat(3, auto);
+    background-color: blueviolet;
+    grid-template-columns: repeat(3, 32.7%);
+    grid-template-rows: 9% 80% 9%;
+    grid-template-areas: 
+        "word-input word-input word-input" 
+        "description-input description-input description-input"
+        "cancel confirm delete"
+    ;
+    padding: 1%;
+    gap: 1%;
 }
 
-.input-container {
-    display: grid;
-    background-color: aquamarine;
-    grid-template-rows: 10% 80% 10%;
+.put-form > .word-input {
+    grid-area: word-input;
+    border: none;
 }
 
-.input-container > .description-input {
+.put-form > .description-input {
     resize: none;
+    grid-area: description-input;
+    border: none;
+}
+
+.put-form > .cancel {
+    grid-area: cancel;
+    border: none;
+}
+
+.put-form > .confirm {
+    grid-area: confirm;
+    border: none;
+}
+
+.put-form > .delete {
+    grid-area: delete;
+    border: none;
+    background-color: red;
+}
+
+.put-form > .delete:hover {
+    grid-area: delete;
+    border: none;
+    background-color: orangered;
 }
 
 .post {
-    background-color: blanchedalmond;
+    background-color: green;
     display: grid;
     align-items: center;
+    border: none;
+}
+
+.post:hover {
+    background-color: greenyellow;
 }
 
 .post > .word,

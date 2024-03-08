@@ -24,13 +24,11 @@ export default function PostWord ({ callback } : { callback: () => void }) {
     }
 
     return (
-        <main className="post-word">
-            <form onSubmit={post} className="post-form">      
-                <input minLength={1} maxLength={36} required className='word' type="text" placeholder='word' onChange={(e) => setWord(e.target.value.toLowerCase())}/>
-                <button className='exit-button' type='button' onClick={() => callback()}>X</button>
-                <textarea minLength={1} maxLength={500} required className='description' placeholder='description' onChange={(e) => setDescription(e.target.value) }/>
-                <button className='submit-button'>Post</button>
-            </form>
-        </main>
+        <form onSubmit={post} className="post-form">      
+            <input minLength={1} maxLength={36} required className='word' type="text" placeholder='word' onChange={(e) => setWord(e.target.value.toLowerCase())}/>
+            <button className='exit-button' type='button' onClick={() => callback()}>X</button>
+            <textarea minLength={1} maxLength={500} required className='description' placeholder='description' onChange={(e) => setDescription(e.target.value) }/>
+            <button className='submit-button'>Post</button>
+        </form>
     )
 }

@@ -48,14 +48,12 @@ export default function PutWord ({ uuid, word_prop, description_prop } : PostTyp
             <div className="word" >{word_prop}</div>
         </button>
     ) : (
-        <form className='input-container' onSubmit={putWord}>
+        <form className='put-form' onSubmit={putWord}>
             <input minLength={1} maxLength={36} className='word-input' type="text" value={word_input} onChange={(e) => setWordInput(e.target.value.toLowerCase())}/>
             <textarea minLength={1} maxLength={500} className='description-input' value={description_input} onChange={(e) => setDescriptionInput(e.target.value)}/>
-            <div className="button-container">
-                <button onClick={() => setToggleEdit(!toggle_edit)} >Cancel</button>
-                <button type="submit" >Confirm</button>
-                <button onClick={deleteWord} >Delete</button>
-            </div>
+            <button className="cancel" onClick={() => setToggleEdit(!toggle_edit)} >Cancel</button>
+            <button className="confirm" type="submit" >Confirm</button>
+            <button className="delete" onClick={deleteWord} >Delete</button>
         </form>
     )
     
