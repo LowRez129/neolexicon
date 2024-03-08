@@ -9,18 +9,18 @@ function ViewWord ({ user_uuid, word, description } : ViewWordProp) {
         setToggle(!toggle);
     }
 
+    const toggle_view = <button className='word-button' onClick={toggleDescription}>{word}</button>;
     const description_container = (toggle == true) ? (
         <div className='view-container'>
-            <button className='word-button' onClick={toggleDescription}>{word}</button>
-            <p className='description'>{description}</p>
+            {toggle_view}
+            <div className='description'>{description}</div>
         </div>
-    ) : <button className='word-button' onClick={toggleDescription}>{word}</button>;
-
+    ) : toggle_view;
     const resize_column = (!toggle) ? '' : 'auto / span 2';
     const resize_row = (!toggle) ? '' : 'auto / span 3';
 
     return (
-        <div className='word-container' style={{gridColumn: `${resize_column}`, gridRow: `${resize_row}`}}>
+        <div className='view-word-container' style={{gridColumn: `${resize_column}`, gridRow: `${resize_row}`}}>
             {description_container}
         </div>
     )

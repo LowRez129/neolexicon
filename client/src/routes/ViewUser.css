@@ -13,24 +13,34 @@
 
 .user-menubar > .home-button {
     grid-area: home-button;
+    border: none;
+    background-color: burlywood;
+}
+
+.user-menubar > .home-button:hover {
+    background-color: wheat;
 }
 
 .user-menubar > .username {
-    align-self: center;
-    justify-self: center;
-    grid-area: username;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    background-color: wheat;
 }
 
 .user-menubar > .searchbar {
     grid-area: searchbar;
+    border: none;
 }
 
 .user-words {
     display: grid;
     grid-template-columns: repeat(6, auto);
     grid-auto-rows: minmax(100px, auto);
-    background-color: aquamarine;
+    background-color: brown;
     overflow: scroll;
+    gap: 10px;
+    padding: 10px;
 }
 
 @media screen and (max-width: 600px) {

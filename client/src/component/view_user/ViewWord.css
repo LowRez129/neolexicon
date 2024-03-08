@@ -1,17 +1,24 @@
-.wword-container {
+.view-word-container {
     display: grid;
 }
 
-.wword-container > #view-container {
+.view-word-container > .view-container {
     display: grid;
-    grid-template-rows: 20% 60% 20%;
+    grid-template-rows: 20% 80%;
 }
 
-.wword-container > #word-button {
-    background-color: grey;   
+.word-button {
+    background-color: burlywood;   
     font-size: larger;
+    border: none;
 }
 
-.wword-container > #description {
+.word-button:hover {
+    background-color: sandybrown;
+}
+
+.view-container > .description {
     overflow-wrap: break-word;
+    padding: 10px;
+    background-color: wheat;
 }
