@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import './Dashboard.css';
-import PostWord from "../component/Dashboard/PostWord";
-import PutWord from "../component/Dashboard/PutWord";
+import PostWord from "../component/dashboard/PostWord";
+import PutWord from "../component/dashboard/PutWord";
 
 export default function Dashboard () {
     type Data = { uuid: string, word: string, description: string };

@@ -1,8 +1,10 @@
 import './App.css';
 import { useState, useEffect } from 'react';
 import WordsInterface from '../interface/words_interface';
-import Word from '../component/App/Word';
-import MenuButtons from '../component/App/MenuButtons';
+import Word from '../component/app/Word';
+import MenuButtons from '../component/app/MenuButtons';
+import ErrorDisplay from '../component/handle_status/ErrorDisplay';
+import Loading from '../component/handle_status/Loading';
 
 function App() {
     const [catalogues, setCatalogues] = useState<(WordsInterface)[]>([]);
@@ -29,7 +31,7 @@ function App() {
                 setPending(false);
                 setCatalogues(json)
     
-            } catch (err: any) {
+            } catch (err: unknown) {
                 setError(err);
             }
         }
@@ -37,13 +39,12 @@ function App() {
     }, [word_input])
     
     const word_map = () => {
-        if (error) {return <div>{error.message}</div>}
-        if (pending == true) {return <div>Pending...</div>}
+        if (error) {return <ErrorDisplay message={error.message}/>}
+        if (pending == true) {return <Loading/>}
         return catalogues.map(({ username, user_uuid, word, description, uuid }) => {
             return <Word username={username} user_uuid={user_uuid} word={word} description={description} key={uuid}/>
         });
     }
-    console.log(catalogues);
 
     return (
         <main className='app'>

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import './ViewUser.css';
-import ViewWord from "../component/ViewUser/ViewWord";
+import ViewWord from "../component/view_user/ViewWord";
 
 export default function ViewUser () {
     const url = new URL(window.location.href).searchParams;
@@ -60,8 +60,6 @@ export default function ViewUser () {
             return <ViewWord word={word} description={description} user_uuid={user_uuid} key={uuid}/>
         })
     }
-
-    console.log(username);
 
     return (
         <main className="user">

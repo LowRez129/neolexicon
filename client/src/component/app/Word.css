@@ -19,6 +19,7 @@
 .word-container > .view-container > .description {
     overflow-wrap: break-word;
     background-color: cornflowerblue;
+    padding: 10px;
 }
 
 .word-container > .view-container > .view-user-button {

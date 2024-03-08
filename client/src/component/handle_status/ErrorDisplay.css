@@ -1,0 +1,27 @@
+.error {
+    display: grid;
+    grid-template-columns: repeat(2, 50%);
+    grid-template-rows: repeat(2, 50%);
+    grid-template-areas: "error-message error-message" "home refresh";
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: aquamarine;
+    padding: 15px;
+    border: solid;
+    height: 25%;
+}
+
+.error > .error-message {
+    grid-area: error-message;
+    align-self: center;
+}
+
+.error > .home {
+    grid-area: home;
+}
+
+.error > .refresh {
+    grid-area: refresh;
+}

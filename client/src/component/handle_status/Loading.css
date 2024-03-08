@@ -1,0 +1,12 @@
+.loading {
+    display: grid;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: aquamarine;
+    padding: 15px;
+    border: solid;
+    height: 25%;
+    align-items: center;
+}
