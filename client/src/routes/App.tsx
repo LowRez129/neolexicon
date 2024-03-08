@@ -50,7 +50,7 @@ function App() {
         <main className='app'>
             <section className='menubar'>
                 <MenuButtons/>
-                <input type="search" placeholder='Search' onChange={(e) => setWordInput(e.target.value)} name="q"/>
+                <input className='searchbar' type="search" placeholder='Search' onChange={(e) => setWordInput(e.target.value)} name="q"/>
             </section>
             <section className="words">
                 {word_map()}
