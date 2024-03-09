@@ -18,7 +18,8 @@ export default function SignIn ({ setToggleSignIn } : { setToggleSignIn: () => v
                 body: JSON.stringify(body)
             })
 
-            window.location.pathname = '/login';
+            if (response.ok == false) { return console.log('error') }
+            window.location.reload();
         } catch (err: any) {
             console.log(err.message);
         }
@@ -43,7 +44,7 @@ export default function SignIn ({ setToggleSignIn } : { setToggleSignIn: () => v
             <input placeholder="Password" type='password' required value={password} onChange={e => setPassword(e.target.value)}/>
             <label>Confirm Password:</label>
             <input placeholder="Confirm Password" type='password' required value={confirm_password} onChange={e => setConfirmPassword(e.target.value)}/>
-            <button>Submit</button>
+            <button className='submit-sign-in' >Submit</button>
             <button type="button" className='close-sign-in-form' onClick={setToggleSignIn} >X</button>
         </form>
     )

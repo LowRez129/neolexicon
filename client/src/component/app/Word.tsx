@@ -4,7 +4,8 @@ import words_proptypes from '../../proptype/Words_PropType';
 
 type WordProp = { username: string, user_uuid: string, word: string, description: string };
 function Word ({ username, user_uuid, word, description } : WordProp) {
-    const [toggle, setToggle] = useState<boolean>(false);
+    const random_bool = Math.random() < 0.5;
+    const [toggle, setToggle] = useState<boolean>(random_bool);
     const toggleDescription = () => {
         setToggle(!toggle);
     }

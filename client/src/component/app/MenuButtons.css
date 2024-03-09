@@ -1,12 +1,10 @@
-.menubar-buttons {
-    display: grid;
-    grid-template-columns: repeat(2, 50%);
-}
-
-.menubar-buttons > input {
+.sign-in,
+.login {
     border: none;
-    background-color: green;
+    background-color: burlywood;
 
-}.menubar-buttons > input:hover {
-    background-color: grey;
+}
+.sign-in:hover,
+.login:hover {
+    background-color: sandybrown;
 }

@@ -7,14 +7,13 @@
 
 .menubar {
     display: grid;
-    grid-template-columns: 50% 50%;
+    grid-template-columns: 20% 20% 60%;
     position: relative;
     z-index: 1;
 }
 
 .menubar > .searchbar {
-    margin: 2px;
-    border: solid;
+    border: none;
 }
 
 .words {

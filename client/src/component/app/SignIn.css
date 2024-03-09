@@ -5,15 +5,25 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: aquamarine;
+    background-color: wheat;
     padding: 15px;
-    border: solid;
+    border: solid brown;
     height: 50%;
+}
+
+.close-sign-in-form:hover,
+.submit-sign-in:hover {
+    background-color: sandybrown;
 }
 
 .close-sign-in-form {
     position: absolute;
     right: 0%;
     border: none;
-    background-color: red;
+    background-color: saddlebrown;
+}
+
+.submit-sign-in {
+    background-color: burlywood;
+    border: none;
 }

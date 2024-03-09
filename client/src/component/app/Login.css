@@ -5,9 +5,9 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: aquamarine;
+    background-color: wheat;
     padding: 15px;
-    border: solid;
+    border: solid brown;
     height: 25%;
 }
 
@@ -15,5 +15,15 @@
     position: absolute;
     right: 0%;
     border: none;
-    background-color: red;
+    background-color: saddlebrown;
+}
+
+.close-login-form:hover,
+.login-form > .login-submit-button:hover {
+    background-color: sandybrown;
+}
+
+.login-form > .login-submit-button {
+    background-color: burlywood;
+    border: none;
 }

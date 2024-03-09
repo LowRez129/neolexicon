@@ -40,8 +40,8 @@ export default function MenuButtons () {
     const show_login = (toggle_login) ? <Login setToggleLogin={toggleLogin}/> : <></>;
 
     const show = (login == false) ? <>
-        <input type="button" onClick={toggleSignIn} value="Sign In"/>
-        <input type="button" onClick={toggleLogin} value="Login"/>
+        <button className='sign-in' onClick={toggleSignIn}>Sign In</button>
+        <button className='login' onClick={toggleLogin}>Login</button>
     </> : <>
         <input type="button" onClick={() => window.location.href = "/dashboard"} value="Dashboard"/>
         <Logout/>
@@ -49,10 +49,10 @@ export default function MenuButtons () {
 
 
     return (
-        <div className='menubar-buttons'>
+        <>
             {show}
             {show_login}
             {show_sign_in}
-        </div>
+        </>
     )
 }
