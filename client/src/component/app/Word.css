@@ -2,31 +2,51 @@
     display: grid;
 }
 
-.word-container > .view-container {
+.word-container > .view {
     display: grid;
     grid-template-rows: 20% 70% 10%;
     grid-auto-columns: minmax(100px, auto);
     background-color: red;
+    position: relative;
+    z-index: 1;
 }
 
 .word-container > .word-button,
-.word-container > .view-container > .word-button {
-    background-color: green;
+.word-container > .view > .word-button {
+    background-color: burlywood;
     font-size: larger;
     border: none;
 }
 
 .word-container > .word-button:hover,
-.word-container > .view-container > .word-button:hover {
-    background-color: gray;
+.word-container > .view > .word-button:hover,
+.word-container > .view > .close-view:hover,
+.word-container > .view > .view-user-button:hover {
+    background-color: sandybrown;
 }
 
-.word-container > .view-container > .description {
+.word-container > .view > .close-view {
+    position: absolute;
+    right: 0;
+    height: 20%;
+    border: none;
+    background-color: saddlebrown;
+}
+
+.word-container > .view > .word {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    background-color: burlywood;
+}
+
+.word-container > .view > .description {
     overflow-wrap: break-word;
-    background-color: cornflowerblue;
+    background-color: wheat;
     padding: 10px;
 }
 
-.word-container > .view-container > .view-user-button {
+.word-container > .view > .view-user-button {
     border: none;
+    background-color: burlywood;
 }
