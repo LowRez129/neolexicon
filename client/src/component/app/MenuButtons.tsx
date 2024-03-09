@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import Logout from './Logout';
 import './MenuButtons.css';
 import Login from './Login';
 import SignIn from './SignIn';
@@ -25,7 +24,14 @@ export default function MenuButtons () {
         check_jwt();
     }, [])
 
-
+    const logout = async () => {
+        try {
+            await fetch('http://localhost:5000/logout', {credentials: 'include'});
+            window.location.href = '/';
+        } catch (err) {
+            console.log(err.message)
+        }
+    }
 
     const toggleSignIn = () => {
         if (toggle_login) { setToggleLogin(!toggle_login) }
@@ -43,8 +49,8 @@ export default function MenuButtons () {
         <button className='sign-in' onClick={toggleSignIn}>Sign In</button>
         <button className='login' onClick={toggleLogin}>Login</button>
     </> : <>
-        <input type="button" onClick={() => window.location.href = "/dashboard"} value="Dashboard"/>
-        <Logout/>
+        <button className='dashboard-button' onClick={() => window.location.href = "/dashboard"}>Dashboard</button>
+        <button className='logout' onClick={logout}>Logout</button>
     </>
 
 

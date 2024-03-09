@@ -51,7 +51,7 @@
     }
 
     .user-words {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2, auto);
         grid-auto-rows: minmax(100px, auto);
     }
 }

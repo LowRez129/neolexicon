@@ -1,10 +1,14 @@
 .sign-in,
-.login {
+.login,
+.dashboard-button,
+.logout {
     border: none;
     background-color: burlywood;
 
 }
 .sign-in:hover,
-.login:hover {
+.login:hover,
+.dashboard-button:hover,
+.logout:hover {
     background-color: sandybrown;
 }
