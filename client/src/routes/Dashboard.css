@@ -21,8 +21,7 @@
 }
 
 .dashboard > .dashboard-menu-bar > .searchbar {
-    border: solid;
-    margin: 2px;
+    border: none;
 }
 
 .dashboard > .posts {
