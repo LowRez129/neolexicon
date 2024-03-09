@@ -4,7 +4,6 @@
 
 .put-form {
     display: grid;
-    background-color: blueviolet;
     grid-template-columns: repeat(3, 32.7%);
     grid-template-rows: 9% 80% 9%;
     grid-template-areas: 
@@ -12,7 +11,6 @@
         "description-input description-input description-input"
         "delete cancel confirm"
     ;
-    padding: 1%;
     gap: 1%;
 }
 
@@ -30,11 +28,13 @@
 .put-form > .cancel {
     grid-area: cancel;
     border: none;
+    background-color: burlywood;
 }
 
 .put-form > .confirm {
     grid-area: confirm;
     border: none;
+    background-color: burlywood;
 }
 
 .put-form > .delete {
@@ -50,14 +50,16 @@
 }
 
 .post {
-    background-color: green;
+    background-color: burlywood;
     display: grid;
     align-items: center;
     border: none;
 }
 
-.post:hover {
-    background-color: greenyellow;
+.post:hover,
+.cancel:hover,
+.confirm:hover {
+    background-color: sandybrown;
 }
 
 .post > .word,

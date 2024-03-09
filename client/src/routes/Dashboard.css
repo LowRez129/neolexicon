@@ -7,18 +7,17 @@
 .dashboard > .dashboard-menu-bar {
     display: grid;
     grid-template-columns: 20% 20% 60%;
-    background-color: gold;
 }
 
 .dashboard > .dashboard-menu-bar > .home-button,
 .dashboard > .dashboard-menu-bar > .post-button {
-    background-color: green;
+    background-color: burlywood;
     border: none;
 }
 
 .dashboard > .dashboard-menu-bar > .home-button:hover,
 .dashboard > .dashboard-menu-bar > .post-button:hover {
-    background-color: grey;
+    background-color: sandybrown;
 }
 
 .dashboard > .dashboard-menu-bar > .searchbar {
@@ -33,7 +32,7 @@
     overflow: scroll;
     gap: 10px;
     padding: 10px;
-    background-color: gold;
+    background-color: brown;
 }
 
 @media screen and (max-width: 600px) {
