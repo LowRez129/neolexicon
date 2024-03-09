@@ -57,7 +57,7 @@ export default function ViewUser () {
         if (error) {return <div>{error}</div>}
         if (pending) { return <div>pending</div> }
         return words.map(({ uuid, word, description }) => {
-            return <ViewWord word={word} description={description} user_uuid={user_uuid} key={uuid}/>
+            return <ViewWord word={word} description={description} key={uuid}/>
         })
     }
 
@@ -65,7 +65,7 @@ export default function ViewUser () {
         <main className="user">
             <section className="user-menubar">
                 <button className="home-button" onClick={() => window.location.href = '/'}>Home</button>
-                <div className="username">{username}</div>
+                <div className="username">{username}'s Dictionary</div>
                 <input className="searchbar" placeholder="search" onChange={(e) => setWordInput(e.target.value)}/>
             </section>
             <section className="user-words">

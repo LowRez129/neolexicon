@@ -5,6 +5,7 @@
 .view-word-container > .view-container {
     display: grid;
     grid-template-rows: 20% 80%;
+    position: relative;
 }
 
 .word-button {
@@ -13,8 +14,26 @@
     border: none;
 }
 
-.word-button:hover {
+.word-button:hover,
+.view-container > .close-view-container:hover {
     background-color: sandybrown;
+}
+
+.view-container > .close-view-container {
+    position: absolute;
+    background-color: saddlebrown;
+    border: none;
+    height: 20%;
+    right: 0;
+}
+
+.view-container > .word {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    background-color: burlywood;   
+    font-size: larger;
+    border: none;
 }
 
 .view-container > .description {

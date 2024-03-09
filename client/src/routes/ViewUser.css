@@ -7,7 +7,7 @@
 
 .user-menubar {
     display: grid;
-    grid-template-columns: 20% 20% 60%;
+    grid-template-columns: 20% 60% 20%;
     grid-template-areas: "home-button username searchbar";
 }
 
@@ -18,7 +18,7 @@
 }
 
 .user-menubar > .home-button:hover {
-    background-color: wheat;
+    background-color: sandybrown;
 }
 
 .user-menubar > .username {
