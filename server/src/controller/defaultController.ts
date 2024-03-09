@@ -73,7 +73,8 @@ const getSearch: RequestHandler = (req: Request<{}, {}, {word_input: string}>, r
                 `
                     SELECT w.uuid, word, description, user_uuid, a.username
                     FROM words AS w INNER JOIN account AS a ON user_uuid = a.uuid
-                    WHERE word LIKE $1 ESCAPE '$';
+                    WHERE word LIKE $1 ESCAPE '$'
+                    ORDER BY random();
                 `,
                 [input]
             )

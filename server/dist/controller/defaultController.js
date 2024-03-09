@@ -80,7 +80,8 @@ const getSearch = (req, res) => {
             const data = yield db_1.default.query(`
                     SELECT w.uuid, word, description, user_uuid, a.username
                     FROM words AS w INNER JOIN account AS a ON user_uuid = a.uuid
-                    WHERE word LIKE $1 ESCAPE '$';
+                    WHERE word LIKE $1 ESCAPE '$'
+                    ORDER BY random();
                 `, [input]);
             //`SELECT *, a.username FROM music INNER JOIN account AS a ON user_uuid = a.uuid WHERE user_uuid = $1;`
             const words = data.rows;
