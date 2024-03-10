@@ -1,5 +1,4 @@
 import './ErrorDisplay.css';
-import Loading from './Loading';
 
 export default function ErrorDisplay ({message} : { message: string }  ) {
     return (

@@ -31,7 +31,7 @@ function App() {
                 setPending(false);
                 setCatalogues(json)
     
-            } catch (err: unknown) {
+            } catch (err: any) {
                 setError(err);
             }
         }

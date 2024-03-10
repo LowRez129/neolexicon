@@ -1,6 +1,5 @@
 import { SyntheticEvent, useState } from 'react';
 import './PostWord.css';
-import WordsInterface from '../../interface/words_interface';
 
 export default function PostWord ({ callback } : { callback: () => void }) {
     const [word, setWord] = useState('');
@@ -10,7 +9,7 @@ export default function PostWord ({ callback } : { callback: () => void }) {
         e.preventDefault();
         
         try {
-            const body: WordsInterface = { word, description };
+            const body: {word: string, description: string} = { word, description };
             const data = await fetch('http://localhost:5000/user/post', {
                 method: "POST",
                 headers: {"Content-Type": "application/json"},

@@ -25,7 +25,7 @@ export default function ViewUser () {
                 const response = await promise.json();
                 setPending(false);
                 setUsername(response);
-            } catch (err) {
+            } catch (err: any) {
                 console.log(err.message);
                 setError(err.message);
             }
@@ -45,7 +45,7 @@ export default function ViewUser () {
                 const response = await promise.json()
                 setPending(false);
                 setWords(response);
-            } catch (err) {
+            } catch (err: any) {
                 console.log(err.message);
                 setError(err.message);
             }
