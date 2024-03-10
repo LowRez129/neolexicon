@@ -1,15 +1,15 @@
 .app {
     display: grid;
     grid-template-rows: 10% 90%;
-    background-color: gold;
     height: 100%;
 }
 
 .menubar {
     display: grid;
-    grid-template-columns: 20% 20% 60%;
+    grid-template-columns: 20% 20% 1fr;
     position: relative;
     z-index: 1;
+    background-color: brown;
 }
 
 .menubar > .searchbar {
@@ -20,7 +20,7 @@
     display: grid;
     background-color: brown;
     grid-template-columns: repeat(6, auto);
-    grid-auto-rows: minmax(100px, 1fr);
+    grid-auto-rows: minmax(100px, auto);
     overflow: scroll;
     gap: 10px;
     padding: 10px;
@@ -35,8 +35,8 @@
 
     .menubar {
         display: grid;
-        grid-template-columns: 50% 50%;
-        grid-template-rows: 50% 50%;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2, 1fr);
         grid-template-areas: ". ." "searchbar searchbar";
     }
 

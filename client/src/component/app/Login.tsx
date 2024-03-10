@@ -43,7 +43,7 @@ export default function Login ({ setToggleLogin } : { setToggleLogin: () => void
             <input placeholder="Password" type='password' required value={password} onChange={e => setPassword(e.target.value)}/>
             {password_error}
             <button className="login-submit-button">Submit</button>
-            <button type="button" className="close-login-form" onClick={setToggleLogin} >X</button>
+            <button type="button" className="close-login-form" onClick={setToggleLogin} >&lt;&lt;&lt;</button>
         </form>
     )
 }

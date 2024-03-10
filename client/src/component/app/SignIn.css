@@ -23,6 +23,11 @@
     background-color: saddlebrown;
 }
 
+.sign-in-form > input {
+    background-color: burlywood;
+    border: dashed saddlebrown;
+}
+
 .submit-sign-in {
     background-color: burlywood;
     border: none;

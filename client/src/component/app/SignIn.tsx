@@ -45,7 +45,7 @@ export default function SignIn ({ setToggleSignIn } : { setToggleSignIn: () => v
             <label>Confirm Password:</label>
             <input placeholder="Confirm Password" type='password' required value={confirm_password} onChange={e => setConfirmPassword(e.target.value)}/>
             <button className='submit-sign-in' >Submit</button>
-            <button type="button" className='close-sign-in-form' onClick={setToggleSignIn} >X</button>
+            <button type="button" className='close-sign-in-form' onClick={setToggleSignIn} >&lt;&lt;&lt;</button>
         </form>
     )
 }

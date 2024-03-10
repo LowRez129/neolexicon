@@ -23,6 +23,11 @@
     background-color: sandybrown;
 }
 
+.login-form > input {
+    background-color: burlywood;
+    border: dashed saddlebrown;
+}
+
 .login-form > .login-submit-button {
     background-color: burlywood;
     border: none;

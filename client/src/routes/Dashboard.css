@@ -6,7 +6,8 @@
 
 .dashboard > .dashboard-menu-bar {
     display: grid;
-    grid-template-columns: 20% 20% 60%;
+    grid-template-columns: 20% 20% 1fr;
+    background-color: brown;
 }
 
 .dashboard > .dashboard-menu-bar > .home-button,
