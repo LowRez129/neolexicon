@@ -32,7 +32,7 @@ export default function ViewUser () {
             }
         }
         get();
-    }, [])
+    }, [user_uuid])
     
     useEffect(() => {
         const get = async () => {
