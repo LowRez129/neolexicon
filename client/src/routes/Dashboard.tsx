@@ -28,9 +28,10 @@ export default function Dashboard () {
                 const json = await promise.json()
                 setUser(json)
     
-            } catch (err: any) {
-                console.log(err.message);
-                if (err.message == 'Missing JWT') { window.location.href = '/login' }
+            } catch (err: unknown) {
+                if (err instanceof Error) {
+                    if (err.message == 'Missing JWT') { window.location.href = '/login' }
+                }   
             }
         }
         getWords()

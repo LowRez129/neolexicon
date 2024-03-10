@@ -22,8 +22,8 @@ export default function PutWord ({ uuid, word_prop, description_prop } : PostTyp
                 body: JSON.stringify(body)
             })
             if (data.ok == true) {window.location.reload()}
-        } catch (err: any) {
-            console.log(err.message);
+        } catch (err: unknown) {
+            if (err instanceof Error) { console.log(err.message) } 
         }
     }
 
@@ -38,8 +38,8 @@ export default function PutWord ({ uuid, word_prop, description_prop } : PostTyp
                 body: JSON.stringify({uuid})
             });
             if ( data.ok == true ) { window.location.reload() }
-        } catch (err: any) {
-            console.log(err.message);
+        } catch (err: unknown) {
+            if (err instanceof Error) { console.log(err.message) } 
         }
     }
 

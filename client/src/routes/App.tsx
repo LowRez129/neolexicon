@@ -8,7 +8,7 @@ import Loading from '../component/handle_status/Loading';
 
 function App() {
     const [catalogues, setCatalogues] = useState<(WordsInterface)[]>([]);
-    const [error, setError] = useState<Error|null>(null);
+    const [error, setError] = useState<string|null>(null);
     const [pending, setPending] = useState<boolean>(true);
     const [word_input, setWordInput] = useState('');
 
@@ -31,15 +31,17 @@ function App() {
                 setPending(false);
                 setCatalogues(json)
     
-            } catch (err: any) {
-                setError(err);
+            } catch (err: unknown) {
+                if (err instanceof Error) {
+                    setError(err.message);
+                }
             }
         }
         getWords()
     }, [word_input])
     
     const word_map = () => {
-        if (error) {return <ErrorDisplay message={error.message}/>}
+        if (error) {return <ErrorDisplay message={error}/>}
         if (pending == true) {return <Loading/>}
         return catalogues.map(({ username, user_uuid, word, description, uuid }) => {
             return <Word username={username} user_uuid={user_uuid} word={word} description={description} key={uuid}/>

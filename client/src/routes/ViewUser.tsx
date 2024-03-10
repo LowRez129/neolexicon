@@ -25,9 +25,10 @@ export default function ViewUser () {
                 const response = await promise.json();
                 setPending(false);
                 setUsername(response);
-            } catch (err: any) {
-                console.log(err.message);
-                setError(err.message);
+            } catch (err) {
+                if (err instanceof Error) {
+                    setError(err.message);
+                }
             }
         }
         get();
@@ -45,9 +46,10 @@ export default function ViewUser () {
                 const response = await promise.json()
                 setPending(false);
                 setWords(response);
-            } catch (err: any) {
-                console.log(err.message);
-                setError(err.message);
+            } catch (err: unknown) {
+                if (err instanceof Error) {
+                    setError(err.message);
+                }
             }
         }
         get();

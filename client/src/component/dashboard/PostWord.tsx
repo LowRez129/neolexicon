@@ -17,8 +17,8 @@ export default function PostWord ({ callback } : { callback: () => void }) {
                 credentials: "include"
             })
             if (data.ok) { window.location.reload() }
-        } catch (err: any) {
-            console.log(err.message);
+        } catch (err: unknown) {
+            if (err instanceof Error) { console.log(err.message) } 
         }
     }
 

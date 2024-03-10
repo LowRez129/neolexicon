@@ -20,8 +20,8 @@ export default function SignIn ({ setToggleSignIn } : { setToggleSignIn: () => v
 
             if (response.ok == false) { return console.log('error') }
             window.location.reload();
-        } catch (err: any) {
-            console.log(err.message);
+        } catch (err: unknown) {
+            if (err instanceof Error) { console.log(err.message) }
         }
         return console.log(username, email)
     }

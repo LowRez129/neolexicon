@@ -26,9 +26,12 @@ export default function Login ({ setToggleLogin } : { setToggleLogin: () => void
             }
             
             window.location.href = '/dashboard';
-        } catch (err: any) {
-            console.log(err.message);
-            setError(err.message);
+        } catch (err: unknown) {
+            if (err instanceof Error) {
+                if (typeof err.message === 'object') {
+                    setError(err.message);
+                }
+            }
         }
     }
     const email_error = (error != null) ? <div style={{color: "red"}}>{error.email}</div> : <></>

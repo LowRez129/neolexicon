@@ -15,8 +15,7 @@ export default function MenuButtons () {
                 const parsed = await bool.json();
                 if (parsed == true) { setLogin(parsed) }
             }
-            catch (err: any) {
-                console.log(err.message);
+            catch (err: unknown) {
                 setLogin(false);
             }
         }
@@ -28,8 +27,10 @@ export default function MenuButtons () {
         try {
             await fetch('http://localhost:5000/logout', {credentials: 'include'});
             window.location.href = '/';
-        } catch (err: any) {
-            console.log(err.message)
+        } catch (err: unknown) {
+            if (err instanceof Error) {
+                console.log(err.message);
+            }
         }
     }
 
