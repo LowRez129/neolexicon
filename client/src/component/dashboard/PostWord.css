@@ -8,33 +8,37 @@
     left: 50%;
     transform: translate(-50%, -50%);
     gap: 1%;
-    width: 50%;
+    width: 30%;
     height: 50%;
-    border: solid;
-    background-color: black;
+    border: solid brown;
+    background-color: brown;
 }
 .post-form > .word {
     grid-area: word;
     border: none;
+    background-color: wheat;
 }
 
 .post-form > .exit-button {
     grid-area: exit-button;
     border: none;
-    background-color: red;
-}
-
-.post-form > .exit-button:hover {
-    background-color: crimson;
+    background-color: saddlebrown;
 }
 
 .post-form > .description {
     resize: none;
     grid-area: description;
     border: none;
+    background-color: wheat;
 }
 
 .post-form > .submit-button {
     grid-area: submit-button;
     border: none;
+    background-color: burlywood;
+}
+
+.post-form > .submit-button:hover,
+.post-form > .exit-button:hover {
+    background-color: sandybrown;
 }

@@ -4,12 +4,12 @@
 
 .put-form {
     display: grid;
-    grid-template-columns: repeat(3, 32.7%);
-    grid-template-rows: 9% 80% 9%;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 1fr 80% 1fr;
     grid-template-areas: 
-        "word-input word-input word-input" 
-        "description-input description-input description-input"
-        "delete cancel confirm"
+        "word-input word-input word-input cancel" 
+        "description-input description-input description-input description-input"
+        "delete delete confirm confirm"
     ;
     gap: 1%;
 }
@@ -28,7 +28,7 @@
 .put-form > .cancel {
     grid-area: cancel;
     border: none;
-    background-color: burlywood;
+    background-color: saddlebrown;
 }
 
 .put-form > .confirm {

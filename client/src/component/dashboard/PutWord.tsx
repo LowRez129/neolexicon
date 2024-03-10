@@ -52,7 +52,7 @@ export default function PutWord ({ uuid, word_prop, description_prop } : PostTyp
             <input minLength={1} maxLength={36} className='word-input' type="text" value={word_input} onChange={(e) => setWordInput(e.target.value.toLowerCase())}/>
             <textarea minLength={1} maxLength={500} className='description-input' value={description_input} onChange={(e) => setDescriptionInput(e.target.value)}/>
             <button className="delete" onClick={deleteWord} >Delete</button>
-            <button className="cancel" onClick={() => setToggleEdit(!toggle_edit)} >Cancel</button>
+            <button className="cancel" onClick={() => setToggleEdit(!toggle_edit)} >&lt;&lt;&lt;</button>
             <button className="confirm" type="submit" >Confirm</button>
         </form>
     )
