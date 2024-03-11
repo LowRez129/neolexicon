@@ -5,6 +5,7 @@ import Word from '../component/app/Word';
 import MenuButtons from '../component/app/MenuButtons';
 import ErrorDisplay from '../component/handle_status/ErrorDisplay';
 import Loading from '../component/handle_status/Loading';
+import { SEARCH } from '../default_routes';
 
 function App() {
     const [catalogues, setCatalogues] = useState<(WordsInterface)[]>([]);
@@ -16,7 +17,7 @@ function App() {
         const getWords = async () => {
             try {
                 const body = { word_input };
-                const promise = await fetch('http://localhost:5000/search', {
+                const promise = await fetch(SEARCH, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(body)

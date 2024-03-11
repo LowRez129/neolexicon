@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import './ViewUser.css';
 import ViewWord from "../component/view_user/ViewWord";
+import { SEARCH_USER, SEARCH_USER_POST } from "../default_routes";
 
 export default function ViewUser () {
     const url = new URL(window.location.href).searchParams;
@@ -17,7 +18,7 @@ export default function ViewUser () {
         const get = async () => {
             try {
                 const body = { user_uuid };
-                const promise = await fetch('http://localhost:5000/search/user', {
+                const promise = await fetch(SEARCH_USER, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify(body)
@@ -38,7 +39,7 @@ export default function ViewUser () {
         const get = async () => {
             try {
                 const body = { word_input, user_uuid }
-                const promise = await fetch('http://localhost:5000/search/user/post', {
+                const promise = await fetch(SEARCH_USER_POST, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(body)

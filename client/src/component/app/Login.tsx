@@ -1,5 +1,6 @@
 import { SyntheticEvent, useState } from "react";
 import './Login.css';
+import { LOGIN } from "../../default_routes";
 
 export default function Login ({ setToggleLogin } : { setToggleLogin: () => void } ) {
     type LoginInput = { email: string, password: string };
@@ -13,7 +14,7 @@ export default function Login ({ setToggleLogin } : { setToggleLogin: () => void
 
         try {
             const body = { email, password };
-            const data = await fetch ("http://localhost:5000/login", {
+            const data = await fetch (LOGIN, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(body),

@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import './MenuButtons.css';
 import Login from './Login';
 import SignIn from './SignIn';
+import { LOGOUT } from '../../default_routes';
+import { REQUIRE_AUTH } from '../../user_routes';
 
 export default function MenuButtons () {
     const [login, setLogin] = useState(false);
@@ -11,7 +13,7 @@ export default function MenuButtons () {
     useEffect(() => {
         const check_jwt = async () => {
             try {
-                const bool = await fetch('http://localhost:5000/user/require-auth', { credentials: "include" });
+                const bool = await fetch(REQUIRE_AUTH, { credentials: "include" });
                 const parsed = await bool.json();
                 if (parsed == true) { setLogin(parsed) }
             }
@@ -25,7 +27,7 @@ export default function MenuButtons () {
 
     const logout = async () => {
         try {
-            await fetch('http://localhost:5000/logout', {credentials: 'include'});
+            await fetch(LOGOUT, {credentials: 'include'});
             window.location.href = '/';
         } catch (err: unknown) {
             if (err instanceof Error) {

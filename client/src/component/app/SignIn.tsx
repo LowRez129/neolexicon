@@ -1,5 +1,6 @@
 import { SyntheticEvent, useState } from 'react';
 import './SignIn.css';
+import { SIGN_IN } from '../../default_routes';
 
 export default function SignIn ({ setToggleSignIn } : { setToggleSignIn: () => void }) {
     const [username, setUsername] = useState<string>('');
@@ -12,7 +13,7 @@ export default function SignIn ({ setToggleSignIn } : { setToggleSignIn: () => v
         
         try {
             const body = { username, email, password }
-            const response = await fetch("http://localhost:5000/sign-in", {
+            const response = await fetch(SIGN_IN, {
                 method: "POST",
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify(body)

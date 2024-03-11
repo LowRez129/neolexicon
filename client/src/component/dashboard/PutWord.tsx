@@ -1,6 +1,7 @@
 import { SyntheticEvent, useState } from "react";
 import words_proptypes from "../../proptype/Words_PropType";
 import './PutWord.css';
+import { USER_DELETE } from "../../user_routes";
 
 type PostType = { uuid: string, word_prop: string, description_prop: string }
 export default function PutWord ({ uuid, word_prop, description_prop } : PostType) {
@@ -31,7 +32,7 @@ export default function PutWord ({ uuid, word_prop, description_prop } : PostTyp
         e.preventDefault();
 
         try {
-            const data = await fetch('http://localhost:5000/user/delete', {
+            const data = await fetch(USER_DELETE, {
                 credentials: 'include',
                 method: 'DELETE',
                 headers: { "Content-Type": "application/json" },

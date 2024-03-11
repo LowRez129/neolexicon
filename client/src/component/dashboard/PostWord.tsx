@@ -1,5 +1,6 @@
 import { SyntheticEvent, useState } from 'react';
 import './PostWord.css';
+import { USER_POST } from '../../user_routes';
 
 export default function PostWord ({ callback } : { callback: () => void }) {
     const [word, setWord] = useState('');
@@ -10,7 +11,7 @@ export default function PostWord ({ callback } : { callback: () => void }) {
         
         try {
             const body: {word: string, description: string} = { word, description };
-            const data = await fetch('http://localhost:5000/user/post', {
+            const data = await fetch(USER_POST, {
                 method: "POST",
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify(body),

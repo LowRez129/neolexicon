@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import './Dashboard.css';
 import PostWord from "../component/dashboard/PostWord";
 import PutWord from "../component/dashboard/PutWord";
+import { USER_SEARCH } from "../user_routes";
 
 export default function Dashboard () {
     type Data = { uuid: string, word: string, description: string };
@@ -14,7 +15,7 @@ export default function Dashboard () {
         const getWords = async () => {
             try {
                 const body = { word_input };
-                const promise = await fetch('http://localhost:5000/user/search', {
+                const promise = await fetch(USER_SEARCH, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(body),
