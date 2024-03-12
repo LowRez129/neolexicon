@@ -10,7 +10,8 @@
     background-color: aquamarine;
     padding: 15px;
     border: solid;
-    height: 25%;
+    height: 25vh;
+    width: 25vw;
 }
 
 .error > .error-message {

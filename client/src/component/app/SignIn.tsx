@@ -7,11 +7,14 @@ export default function SignIn ({ setToggleSignIn } : { setToggleSignIn: () => v
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState('');
     const [confirm_password, setConfirmPassword] = useState('');
+    const [error, setError] = useState('');
 
     const onSubmitForm = async (e: SyntheticEvent) => {
         e.preventDefault();
         
         try {
+            if ((password || confirm_password) === '') {throw Error('Empty password.')}
+            if (password != confirm_password) { throw Error('Password does not match.') }
             const body = { username, email, password }
             const response = await fetch(SIGN_IN, {
                 method: "POST",
@@ -19,24 +22,20 @@ export default function SignIn ({ setToggleSignIn } : { setToggleSignIn: () => v
                 body: JSON.stringify(body)
             })
 
-            if (response.ok == false) { return console.log('error') }
+            if (response.ok == false) { throw Error(await response.json()) }
             window.location.reload();
         } catch (err: unknown) {
-            if (err instanceof Error) { console.log(err.message) }
+            if (err instanceof Error) { 
+                setError(err.message)
+            }
         }
-        return console.log(username, email)
     }
 
-    const confirmPassword = () => {
-        if ((password || confirm_password) === '') {return}
-        if (password == confirm_password) { return console.log(password, confirm_password, 'match') }
-        return;
-    }
-
-    confirmPassword();
+    const show_error = (error != '') ? <div className='sign-in-error'>{error}</div> : <></>
 
     return (
         <form className='sign-in-form' onSubmit={onSubmitForm}>
+            <button type="button" className='close-sign-in-form' onClick={setToggleSignIn} >&lt;&lt;&lt;</button>
             <label>Username:</label>
             <input placeholder='Username' type='text' required value={username} onChange={e => setUsername(e.target.value)}/>
             <label>Email:</label>
@@ -45,8 +44,8 @@ export default function SignIn ({ setToggleSignIn } : { setToggleSignIn: () => v
             <input placeholder="Password" type='password' required value={password} onChange={e => setPassword(e.target.value)}/>
             <label>Confirm Password:</label>
             <input placeholder="Confirm Password" type='password' required value={confirm_password} onChange={e => setConfirmPassword(e.target.value)}/>
+            {show_error}
             <button className='submit-sign-in' >Submit</button>
-            <button type="button" className='close-sign-in-form' onClick={setToggleSignIn} >&lt;&lt;&lt;</button>
         </form>
     )
 }

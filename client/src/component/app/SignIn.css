@@ -32,3 +32,7 @@
     background-color: burlywood;
     border: none;
 }
+
+.sign-in-error {
+    color: red;
+}
