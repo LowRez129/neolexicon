@@ -1,15 +1,13 @@
 .error {
     display: grid;
-    grid-template-columns: repeat(2, 50%);
-    grid-template-rows: repeat(2, 50%);
-    grid-template-areas: "error-message error-message" "home refresh";
+    grid-template-areas: "error-message" "home";
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: aquamarine;
+    background-color: wheat;
     padding: 15px;
-    border: solid;
+    border: solid brown;
     height: 25vh;
     width: 25vw;
 }
@@ -17,12 +15,22 @@
 .error > .error-message {
     grid-area: error-message;
     align-self: center;
+    text-align: center;
+    color: red;
 }
 
 .error > .home {
     grid-area: home;
+    background-color: burlywood;
+    border: none;
 }
 
-.error > .refresh {
-    grid-area: refresh;
+.error > .home:hover {
+    background-color: sandybrown;
+}
+
+@media screen and (max-width: 600px) {
+    .error {
+        width: 50vw;
+    }
 }

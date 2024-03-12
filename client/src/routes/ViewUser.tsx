@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import './ViewUser.css';
 import ViewWord from "../component/view_user/ViewWord";
 import { default_route } from "../server_routes";
+import Loading from "../component/handle_status/Loading";
+import ErrorDisplay from "../component/handle_status/ErrorDisplay";
 const { SEARCH_USER, SEARCH_USER_POST } = default_route;
 
 export default function ViewUser () {
@@ -58,8 +60,8 @@ export default function ViewUser () {
     }, [ user_uuid, word_input ])
 
     const words_map = () => {
-        if (error) {return <div>{error}</div>}
-        if (pending) { return <div>pending</div> }
+        if (error) {return <ErrorDisplay message={error}/>}
+        if (pending) { return <Loading/> }
         return words.map(({ uuid, word, description }) => {
             return <ViewWord word={word} description={description} key={uuid}/>
         })
