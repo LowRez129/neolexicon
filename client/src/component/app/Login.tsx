@@ -1,6 +1,7 @@
 import { SyntheticEvent, useState } from "react";
 import './Login.css';
-import { LOGIN } from "../../default_routes";
+import { default_route } from "../../server_routes";
+const { LOGIN } = default_route;
 
 export default function Login ({ setToggleLogin } : { setToggleLogin: () => void } ) {
     type LoginInput = { email: string, password: string };

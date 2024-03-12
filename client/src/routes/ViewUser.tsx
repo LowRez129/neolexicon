@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import './ViewUser.css';
 import ViewWord from "../component/view_user/ViewWord";
-import { SEARCH_USER, SEARCH_USER_POST } from "../default_routes";
+import { default_route } from "../server_routes";
+const { SEARCH_USER, SEARCH_USER_POST } = default_route;
 
 export default function ViewUser () {
     const url = new URL(window.location.href).searchParams;

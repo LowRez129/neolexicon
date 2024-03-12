@@ -2,8 +2,9 @@ import { useEffect, useState } from 'react';
 import './MenuButtons.css';
 import Login from './Login';
 import SignIn from './SignIn';
-import { LOGOUT } from '../../default_routes';
-import { REQUIRE_AUTH } from '../../user_routes';
+import { default_route, user_route } from '../../server_routes';
+const { LOGOUT } = default_route;
+const { REQUIRE_AUTH } = user_route;
 
 export default function MenuButtons () {
     const [login, setLogin] = useState(false);

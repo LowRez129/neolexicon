@@ -1,6 +1,7 @@
 import { SyntheticEvent, useState } from 'react';
 import './PostWord.css';
-import { USER_POST } from '../../user_routes';
+import { user_route } from '../../server_routes';
+const { USER_POST } = user_route;
 
 export default function PostWord ({ callback } : { callback: () => void }) {
     const [word, setWord] = useState('');

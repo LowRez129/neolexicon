@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import './Dashboard.css';
 import PostWord from "../component/dashboard/PostWord";
 import PutWord from "../component/dashboard/PutWord";
-import { USER_SEARCH } from "../user_routes";
+import { user_route } from "../server_routes";
+const { USER_SEARCH } = user_route;
 
 export default function Dashboard () {
     type Data = { uuid: string, word: string, description: string };

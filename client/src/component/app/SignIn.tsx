@@ -1,6 +1,7 @@
 import { SyntheticEvent, useState } from 'react';
 import './SignIn.css';
-import { SIGN_IN } from '../../default_routes';
+import { default_route } from '../../server_routes';
+const { SIGN_IN } = default_route;
 
 export default function SignIn ({ setToggleSignIn } : { setToggleSignIn: () => void }) {
     const [username, setUsername] = useState<string>('');

@@ -1,7 +1,8 @@
 import { SyntheticEvent, useState } from "react";
 import words_proptypes from "../../proptype/Words_PropType";
 import './PutWord.css';
-import { USER_DELETE } from "../../user_routes";
+import { user_route } from "../../server_routes";
+const { USER_DELETE } = user_route;
 
 type PostType = { uuid: string, word_prop: string, description_prop: string }
 export default function PutWord ({ uuid, word_prop, description_prop } : PostType) {

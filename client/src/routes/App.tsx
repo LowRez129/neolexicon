@@ -5,7 +5,8 @@ import Word from '../component/app/Word';
 import MenuButtons from '../component/app/MenuButtons';
 import ErrorDisplay from '../component/handle_status/ErrorDisplay';
 import Loading from '../component/handle_status/Loading';
-import { SEARCH } from '../default_routes';
+import { default_route } from '../server_routes';
+const { SEARCH } = default_route;
 
 function App() {
     const [catalogues, setCatalogues] = useState<(WordsInterface)[]>([]);
