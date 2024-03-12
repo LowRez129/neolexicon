@@ -4,9 +4,18 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: aquamarine;
+    background-color: wheat;
     padding: 15px;
-    border: solid;
-    height: 25%;
+    border: solid saddlebrown;
+    height: 10vh;
+    width: 10vw;
     align-items: center;
+    text-align: center;
+    animation: normal rotate;
+}
+
+@media screen and (max-width: 600px) {
+    .loading {
+        width: 30vw;
+    }
 }
