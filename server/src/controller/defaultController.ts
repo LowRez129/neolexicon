@@ -19,9 +19,14 @@ const postSignIn: RequestHandler = (req: Request<{}, {}, User>, res) => {
                 [ username, email, password ]
             )
             const uuid = user.rows[0].uuid;
-            res.status(201).json({user: uuid});
+            res.status(200).json({user: uuid});
         } catch (err: any) {
-            res.end(err.message)
+            if (err.message == 'duplicate key value violates unique constraint "unique_username"') {
+                res.status(400).json('Username must be unique.');
+            }
+            if (err.message == 'duplicate key value violates unique constraint "unique_email"') {
+                res.status(400).json('Email must be unique.');
+            }
         }
     }
     data();
