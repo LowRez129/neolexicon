@@ -3,6 +3,7 @@ import './Dashboard.css';
 import PostWord from "../component/dashboard/PostWord";
 import PutWord from "../component/dashboard/PutWord";
 import { user_route } from "../server_routes";
+import Loading from "../component/handle_status/Loading";
 const { USER_SEARCH } = user_route;
 
 export default function Dashboard () {
@@ -11,6 +12,7 @@ export default function Dashboard () {
     const [user, setUser] = useState<Data[]>(DEFAULT);
     const [word_input, setWordInput] = useState('');
     const [post_toggle, setPostToggle] = useState(false);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const getWords = async () => {
@@ -28,6 +30,7 @@ export default function Dashboard () {
                 }
 
                 const json = await promise.json()
+                setLoading(false);
                 setUser(json)
     
             } catch (err: unknown) {
@@ -40,11 +43,11 @@ export default function Dashboard () {
     }, [word_input])
 
     const word_map = () => {
+        if (loading) { return <Loading/> }
         return user.map(({ uuid, word, description }) => {
             return <PutWord word_prop={word} description_prop={description} uuid={uuid} key={uuid} />
         })
     }
-
     const show_post = (post_toggle) ? <PostWord callback={() => setPostToggle(!post_toggle)} /> : <></>;
  
     return (
