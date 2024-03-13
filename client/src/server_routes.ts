@@ -1,4 +1,5 @@
-const DOMAIN = 'http://localhost:5000'//'https://neolexicon.onrender.com'
+// env
+const DOMAIN = import.meta.env.VITE_REACT_SERVER;
 
 // default route
 const SIGN_IN = `${DOMAIN}/sign-in`;
